@@ -1,0 +1,16 @@
+syntax = "proto3";
+package ttdung.statechannel.statechannel;
+
+import "cosmos/base/v1beta1/coin.proto";
+
+option go_package = "github.com/ttdung/statechannel/x/statechannel/types";
+
+message Timelock {
+  string index = 1; 
+  string from = 2; 
+  string to = 3;
+  cosmos.base.v1beta1.Coin amount = 4;
+  uint64 blockHeight = 5;
+  
+}
+
