@@ -36,6 +36,15 @@ export interface MsgSendCoinHashlockResponse {
   Index: string;
 }
 
+export interface MsgWithdrawCoinHashlock {
+  creator: string;
+  to: string;
+  index: string;
+  hash: string;
+}
+
+export interface MsgWithdrawCoinHashlockResponse {}
+
 const baseMsgSendCoin: object = {
   creator: "",
   sender: "",
@@ -549,14 +558,191 @@ export const MsgSendCoinHashlockResponse = {
   },
 };
 
+const baseMsgWithdrawCoinHashlock: object = {
+  creator: "",
+  to: "",
+  index: "",
+  hash: "",
+};
+
+export const MsgWithdrawCoinHashlock = {
+  encode(
+    message: MsgWithdrawCoinHashlock,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.to !== "") {
+      writer.uint32(18).string(message.to);
+    }
+    if (message.index !== "") {
+      writer.uint32(26).string(message.index);
+    }
+    if (message.hash !== "") {
+      writer.uint32(34).string(message.hash);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgWithdrawCoinHashlock {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgWithdrawCoinHashlock,
+    } as MsgWithdrawCoinHashlock;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.to = reader.string();
+          break;
+        case 3:
+          message.index = reader.string();
+          break;
+        case 4:
+          message.hash = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgWithdrawCoinHashlock {
+    const message = {
+      ...baseMsgWithdrawCoinHashlock,
+    } as MsgWithdrawCoinHashlock;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.to !== undefined && object.to !== null) {
+      message.to = String(object.to);
+    } else {
+      message.to = "";
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index);
+    } else {
+      message.index = "";
+    }
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = String(object.hash);
+    } else {
+      message.hash = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgWithdrawCoinHashlock): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.to !== undefined && (obj.to = message.to);
+    message.index !== undefined && (obj.index = message.index);
+    message.hash !== undefined && (obj.hash = message.hash);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgWithdrawCoinHashlock>
+  ): MsgWithdrawCoinHashlock {
+    const message = {
+      ...baseMsgWithdrawCoinHashlock,
+    } as MsgWithdrawCoinHashlock;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.to !== undefined && object.to !== null) {
+      message.to = object.to;
+    } else {
+      message.to = "";
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index;
+    } else {
+      message.index = "";
+    }
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    } else {
+      message.hash = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgWithdrawCoinHashlockResponse: object = {};
+
+export const MsgWithdrawCoinHashlockResponse = {
+  encode(
+    _: MsgWithdrawCoinHashlockResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgWithdrawCoinHashlockResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgWithdrawCoinHashlockResponse,
+    } as MsgWithdrawCoinHashlockResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgWithdrawCoinHashlockResponse {
+    const message = {
+      ...baseMsgWithdrawCoinHashlockResponse,
+    } as MsgWithdrawCoinHashlockResponse;
+    return message;
+  },
+
+  toJSON(_: MsgWithdrawCoinHashlockResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgWithdrawCoinHashlockResponse>
+  ): MsgWithdrawCoinHashlockResponse {
+    const message = {
+      ...baseMsgWithdrawCoinHashlockResponse,
+    } as MsgWithdrawCoinHashlockResponse;
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   SendCoin(request: MsgSendCoin): Promise<MsgSendCoinResponse>;
   WithdrawCoin(request: MsgWithdrawCoin): Promise<MsgWithdrawCoinResponse>;
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   SendCoinHashlock(
     request: MsgSendCoinHashlock
   ): Promise<MsgSendCoinHashlockResponse>;
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  WithdrawCoinHashlock(
+    request: MsgWithdrawCoinHashlock
+  ): Promise<MsgWithdrawCoinHashlockResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -597,6 +783,20 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgSendCoinHashlockResponse.decode(new Reader(data))
+    );
+  }
+
+  WithdrawCoinHashlock(
+    request: MsgWithdrawCoinHashlock
+  ): Promise<MsgWithdrawCoinHashlockResponse> {
+    const data = MsgWithdrawCoinHashlock.encode(request).finish();
+    const promise = this.rpc.request(
+      "ttdung.statechannel.statechannel.Msg",
+      "WithdrawCoinHashlock",
+      data
+    );
+    return promise.then((data) =>
+      MsgWithdrawCoinHashlockResponse.decode(new Reader(data))
     );
   }
 }

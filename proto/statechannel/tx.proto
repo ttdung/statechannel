@@ -12,6 +12,7 @@ service Msg {
       rpc SendCoin(MsgSendCoin) returns (MsgSendCoinResponse);
   rpc WithdrawCoin(MsgWithdrawCoin) returns (MsgWithdrawCoinResponse);
   rpc SendCoinHashlock(MsgSendCoinHashlock) returns (MsgSendCoinHashlockResponse);
+  rpc WithdrawCoinHashlock(MsgWithdrawCoinHashlock) returns (MsgWithdrawCoinHashlockResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -45,6 +46,16 @@ message MsgSendCoinHashlock {
 
 message MsgSendCoinHashlockResponse {
   string Index  = 1;
+}
+
+message MsgWithdrawCoinHashlock {
+  string creator = 1;
+  string to = 2;
+  string index = 3;
+  string hash = 4;
+}
+
+message MsgWithdrawCoinHashlockResponse {
 }
 
 // this line is used by starport scaffolding # proto/tx/message

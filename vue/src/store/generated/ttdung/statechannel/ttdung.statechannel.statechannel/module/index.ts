@@ -5,14 +5,16 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
 import { MsgSendCoin } from "./types/statechannel/tx";
-import { MsgWithdrawCoin } from "./types/statechannel/tx";
+import { MsgWithdrawCoinHashlock } from "./types/statechannel/tx";
 import { MsgSendCoinHashlock } from "./types/statechannel/tx";
+import { MsgWithdrawCoin } from "./types/statechannel/tx";
 
 
 const types = [
   ["/ttdung.statechannel.statechannel.MsgSendCoin", MsgSendCoin],
-  ["/ttdung.statechannel.statechannel.MsgWithdrawCoin", MsgWithdrawCoin],
+  ["/ttdung.statechannel.statechannel.MsgWithdrawCoinHashlock", MsgWithdrawCoinHashlock],
   ["/ttdung.statechannel.statechannel.MsgSendCoinHashlock", MsgSendCoinHashlock],
+  ["/ttdung.statechannel.statechannel.MsgWithdrawCoin", MsgWithdrawCoin],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -46,8 +48,9 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
     msgSendCoin: (data: MsgSendCoin): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgSendCoin", value: MsgSendCoin.fromPartial( data ) }),
-    msgWithdrawCoin: (data: MsgWithdrawCoin): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgWithdrawCoin", value: MsgWithdrawCoin.fromPartial( data ) }),
+    msgWithdrawCoinHashlock: (data: MsgWithdrawCoinHashlock): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgWithdrawCoinHashlock", value: MsgWithdrawCoinHashlock.fromPartial( data ) }),
     msgSendCoinHashlock: (data: MsgSendCoinHashlock): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgSendCoinHashlock", value: MsgSendCoinHashlock.fromPartial( data ) }),
+    msgWithdrawCoin: (data: MsgWithdrawCoin): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgWithdrawCoin", value: MsgWithdrawCoin.fromPartial( data ) }),
     
   };
 };

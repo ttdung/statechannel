@@ -278,18 +278,18 @@ export default {
 				}
 			}
 		},
-		async sendMsgWithdrawCoin({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgWithdrawCoinHashlock({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgWithdrawCoin(value)
+				const msg = await txClient.msgWithdrawCoinHashlock(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgWithdrawCoin:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgWithdrawCoinHashlock:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgWithdrawCoin:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgWithdrawCoinHashlock:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -308,6 +308,21 @@ export default {
 				}
 			}
 		},
+		async sendMsgWithdrawCoin({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgWithdrawCoin(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgWithdrawCoin:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgWithdrawCoin:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
 		
 		async MsgSendCoin({ rootGetters }, { value }) {
 			try {
@@ -322,16 +337,16 @@ export default {
 				}
 			}
 		},
-		async MsgWithdrawCoin({ rootGetters }, { value }) {
+		async MsgWithdrawCoinHashlock({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgWithdrawCoin(value)
+				const msg = await txClient.msgWithdrawCoinHashlock(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgWithdrawCoin:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgWithdrawCoinHashlock:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgWithdrawCoin:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgWithdrawCoinHashlock:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -345,6 +360,19 @@ export default {
 					throw new Error('TxClient:MsgSendCoinHashlock:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgSendCoinHashlock:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgWithdrawCoin({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgWithdrawCoin(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgWithdrawCoin:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgWithdrawCoin:Create Could not create message: ' + e.message)
 				}
 			}
 		},

@@ -33,6 +33,7 @@ func GetTxCmd() *cobra.Command {
 	cmd.AddCommand(CmdSendCoin())
 	cmd.AddCommand(CmdWithdrawCoin())
 	cmd.AddCommand(CmdSendCoinHashlock())
+	cmd.AddCommand(CmdWithdrawCoinHashlock())
 	// this line is used by starport scaffolding # 1
 
 	/////////////////////////////

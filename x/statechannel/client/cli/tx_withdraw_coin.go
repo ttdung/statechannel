@@ -2,6 +2,7 @@ package cli
 
 import (
 	"crypto/sha256"
+	"encoding/base64"
 	"fmt"
 	"strconv"
 
@@ -21,12 +22,12 @@ func CmdWithdrawCoin() *cobra.Command {
 		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			///////////////////////////
-			secret := "abcd1"
+			secret := "abcd"
 			hash1 := sha256.Sum256([]byte(secret))
-			if hash1 == sha256.Sum256([]byte("abcd")) {
+			if hash1 == sha256.Sum256([]byte("abcd1")) {
 				fmt.Println("@@@@@  OKKkkk")
 			} else {
-				fmt.Println("@@@@@  Secret  not  match input hash", hash1)
+				fmt.Println("@@@@@  Secret  not  match input hash:", base64.StdEncoding.EncodeToString(hash1[:]))
 			}
 			//////////////////////////////////
 

@@ -43,6 +43,8 @@ export interface StatechannelMsgSendCoinResponse {
   index?: string;
 }
 
+export type StatechannelMsgWithdrawCoinHashlockResponse = object;
+
 export type StatechannelMsgWithdrawCoinResponse = object;
 
 /**

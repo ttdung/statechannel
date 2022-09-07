@@ -356,6 +356,110 @@ func (m *MsgSendCoinHashlockResponse) GetIndex() string {
 	return ""
 }
 
+type MsgWithdrawCoinHashlock struct {
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	To      string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	Index   string `protobuf:"bytes,3,opt,name=index,proto3" json:"index,omitempty"`
+	Hash    string `protobuf:"bytes,4,opt,name=hash,proto3" json:"hash,omitempty"`
+}
+
+func (m *MsgWithdrawCoinHashlock) Reset()         { *m = MsgWithdrawCoinHashlock{} }
+func (m *MsgWithdrawCoinHashlock) String() string { return proto.CompactTextString(m) }
+func (*MsgWithdrawCoinHashlock) ProtoMessage()    {}
+func (*MsgWithdrawCoinHashlock) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7387449a6db5c2d5, []int{6}
+}
+func (m *MsgWithdrawCoinHashlock) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgWithdrawCoinHashlock) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgWithdrawCoinHashlock.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgWithdrawCoinHashlock) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgWithdrawCoinHashlock.Merge(m, src)
+}
+func (m *MsgWithdrawCoinHashlock) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgWithdrawCoinHashlock) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgWithdrawCoinHashlock.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgWithdrawCoinHashlock proto.InternalMessageInfo
+
+func (m *MsgWithdrawCoinHashlock) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgWithdrawCoinHashlock) GetTo() string {
+	if m != nil {
+		return m.To
+	}
+	return ""
+}
+
+func (m *MsgWithdrawCoinHashlock) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+func (m *MsgWithdrawCoinHashlock) GetHash() string {
+	if m != nil {
+		return m.Hash
+	}
+	return ""
+}
+
+type MsgWithdrawCoinHashlockResponse struct {
+}
+
+func (m *MsgWithdrawCoinHashlockResponse) Reset()         { *m = MsgWithdrawCoinHashlockResponse{} }
+func (m *MsgWithdrawCoinHashlockResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgWithdrawCoinHashlockResponse) ProtoMessage()    {}
+func (*MsgWithdrawCoinHashlockResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7387449a6db5c2d5, []int{7}
+}
+func (m *MsgWithdrawCoinHashlockResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgWithdrawCoinHashlockResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgWithdrawCoinHashlockResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgWithdrawCoinHashlockResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgWithdrawCoinHashlockResponse.Merge(m, src)
+}
+func (m *MsgWithdrawCoinHashlockResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgWithdrawCoinHashlockResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgWithdrawCoinHashlockResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgWithdrawCoinHashlockResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgSendCoin)(nil), "ttdung.statechannel.statechannel.MsgSendCoin")
 	proto.RegisterType((*MsgSendCoinResponse)(nil), "ttdung.statechannel.statechannel.MsgSendCoinResponse")
@@ -363,41 +467,46 @@ func init() {
 	proto.RegisterType((*MsgWithdrawCoinResponse)(nil), "ttdung.statechannel.statechannel.MsgWithdrawCoinResponse")
 	proto.RegisterType((*MsgSendCoinHashlock)(nil), "ttdung.statechannel.statechannel.MsgSendCoinHashlock")
 	proto.RegisterType((*MsgSendCoinHashlockResponse)(nil), "ttdung.statechannel.statechannel.MsgSendCoinHashlockResponse")
+	proto.RegisterType((*MsgWithdrawCoinHashlock)(nil), "ttdung.statechannel.statechannel.MsgWithdrawCoinHashlock")
+	proto.RegisterType((*MsgWithdrawCoinHashlockResponse)(nil), "ttdung.statechannel.statechannel.MsgWithdrawCoinHashlockResponse")
 }
 
 func init() { proto.RegisterFile("statechannel/tx.proto", fileDescriptor_7387449a6db5c2d5) }
 
 var fileDescriptor_7387449a6db5c2d5 = []byte{
-	// 455 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x54, 0x3d, 0x8f, 0xd3, 0x30,
-	0x18, 0xae, 0xdb, 0x5e, 0xb9, 0x7b, 0x0f, 0xf1, 0x61, 0xbe, 0x72, 0x41, 0x8a, 0xaa, 0x4c, 0x95,
-	0x00, 0x47, 0xbd, 0x8a, 0x81, 0x81, 0x85, 0x5b, 0x60, 0xe8, 0x12, 0x06, 0x24, 0x36, 0x27, 0x79,
-	0x89, 0x23, 0xae, 0x76, 0x65, 0xbb, 0x47, 0x91, 0x18, 0x18, 0x19, 0x99, 0xf9, 0x2d, 0xfc, 0x00,
-	0xc6, 0x1b, 0x19, 0x51, 0xfb, 0x47, 0x50, 0xdd, 0x24, 0x4a, 0xb8, 0x13, 0xd0, 0x5b, 0x2a, 0x3f,
-	0x7a, 0x3f, 0x9e, 0x0f, 0xbb, 0x81, 0x7b, 0xc6, 0x72, 0x8b, 0xa9, 0xe0, 0x52, 0xe2, 0x69, 0x64,
-	0x97, 0x6c, 0xae, 0x95, 0x55, 0x74, 0x68, 0x6d, 0xb6, 0x90, 0x39, 0x6b, 0x56, 0x5b, 0xc0, 0x0f,
-	0x52, 0x65, 0x66, 0xca, 0x44, 0x09, 0x37, 0x18, 0x9d, 0x8d, 0x13, 0xb4, 0x7c, 0x1c, 0xa5, 0xaa,
-	0x90, 0xdb, 0x0d, 0xe1, 0x77, 0x02, 0x87, 0x53, 0x93, 0xbf, 0x46, 0x99, 0x9d, 0xa8, 0x42, 0x52,
-	0x0f, 0xae, 0xa5, 0x1a, 0xb9, 0x55, 0xda, 0x23, 0x43, 0x32, 0x3a, 0x88, 0x2b, 0x48, 0xef, 0xc3,
-	0xc0, 0xa0, 0xcc, 0x50, 0x7b, 0x5d, 0x57, 0x28, 0x11, 0xf5, 0x61, 0x5f, 0x63, 0x8a, 0xc5, 0x19,
-	0x6a, 0xaf, 0xe7, 0x2a, 0x35, 0xa6, 0x63, 0x18, 0xf0, 0x99, 0x5a, 0x48, 0xeb, 0xf5, 0x87, 0x64,
-	0x74, 0x78, 0x7c, 0xc4, 0xb6, 0x72, 0xd8, 0x46, 0x0e, 0x2b, 0xe5, 0xb0, 0x0d, 0x71, 0x5c, 0x36,
-	0xd2, 0xc7, 0x70, 0x7b, 0x21, 0x4f, 0x55, 0xfa, 0x3e, 0xd9, 0xfc, 0x08, 0x2c, 0x72, 0x61, 0xbd,
-	0xbd, 0x21, 0x19, 0xf5, 0xe3, 0x8b, 0x85, 0xf0, 0x11, 0xdc, 0x69, 0xa8, 0x8f, 0xd1, 0xcc, 0x95,
-	0x34, 0x48, 0xef, 0xc2, 0x5e, 0x21, 0x33, 0x5c, 0x96, 0x1e, 0xb6, 0x20, 0x3c, 0x81, 0x9b, 0x53,
-	0x93, 0xbf, 0x29, 0xac, 0xc8, 0x34, 0xff, 0xe0, 0xec, 0x5e, 0xda, 0xd8, 0xb2, 0xd4, 0x6d, 0x5b,
-	0x0a, 0x8f, 0xe0, 0xc1, 0x1f, 0x4b, 0x2a, 0xd6, 0xf0, 0x1b, 0x69, 0xa9, 0x79, 0xc9, 0x8d, 0xd8,
-	0x48, 0xfd, 0x4b, 0xa6, 0x14, 0xfa, 0xef, 0xb4, 0x9a, 0x95, 0x24, 0xee, 0x4c, 0x6f, 0x40, 0xd7,
-	0xaa, 0x32, 0xc9, 0xae, 0x55, 0x57, 0xc9, 0x90, 0x42, 0x5f, 0x70, 0x23, 0x5c, 0x6c, 0x07, 0xb1,
-	0x3b, 0x87, 0x13, 0x78, 0x78, 0x89, 0xb6, 0x66, 0x62, 0xaf, 0x9a, 0x41, 0x38, 0x70, 0xfc, 0xb9,
-	0x07, 0xbd, 0xa9, 0xc9, 0xe9, 0x1c, 0xf6, 0xeb, 0x17, 0xf2, 0x84, 0xfd, 0xeb, 0xd1, 0xb1, 0x06,
-	0x91, 0xff, 0x74, 0xa7, 0xf6, 0x5a, 0xcf, 0x27, 0xb8, 0xde, 0xba, 0xa8, 0xf1, 0x7f, 0xad, 0x69,
-	0x8e, 0xf8, 0xcf, 0x76, 0x1e, 0xa9, 0xd9, 0xbf, 0x10, 0xb8, 0x75, 0xe1, 0x1a, 0x77, 0x73, 0x52,
-	0x8d, 0xf9, 0xcf, 0xaf, 0x34, 0x56, 0x49, 0x79, 0x31, 0xfd, 0xb1, 0x0a, 0xc8, 0xf9, 0x2a, 0x20,
-	0xbf, 0x56, 0x01, 0xf9, 0xba, 0x0e, 0x3a, 0xe7, 0xeb, 0xa0, 0xf3, 0x73, 0x1d, 0x74, 0xde, 0x4e,
-	0xf2, 0xc2, 0x8a, 0x45, 0xc2, 0x52, 0x35, 0x8b, 0xb6, 0x14, 0x51, 0xeb, 0x2b, 0xb1, 0x6c, 0x43,
-	0xfb, 0x71, 0x8e, 0x26, 0x19, 0xb8, 0xbf, 0xfd, 0xe4, 0x77, 0x00, 0x00, 0x00, 0xff, 0xff, 0xfe,
-	0x32, 0x4e, 0x60, 0x51, 0x04, 0x00, 0x00,
+	// 502 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x94, 0xbd, 0x8e, 0xd3, 0x40,
+	0x14, 0x85, 0x33, 0x8e, 0x37, 0xec, 0xde, 0x45, 0xfc, 0x0c, 0x0b, 0x78, 0x8d, 0x64, 0x82, 0xab,
+	0x48, 0xc0, 0x58, 0xd9, 0x88, 0x82, 0x82, 0x02, 0xb6, 0x81, 0x22, 0x8d, 0x29, 0x90, 0xe8, 0xc6,
+	0xf6, 0x60, 0x5b, 0xac, 0x67, 0x22, 0xcf, 0x64, 0x09, 0x12, 0x0f, 0x40, 0x49, 0x81, 0x84, 0xc4,
+	0xb3, 0xf0, 0x00, 0x94, 0x5b, 0x52, 0xa2, 0xe4, 0x45, 0x50, 0xfc, 0xa7, 0x31, 0x09, 0x6c, 0x92,
+	0x26, 0xf2, 0xd1, 0x9d, 0x3b, 0xf7, 0x3b, 0x47, 0x37, 0x03, 0xb7, 0xa5, 0xa2, 0x8a, 0x85, 0x09,
+	0xe5, 0x9c, 0x9d, 0x79, 0x6a, 0x46, 0x26, 0xb9, 0x50, 0x02, 0xf7, 0x95, 0x8a, 0xa6, 0x3c, 0x26,
+	0x7a, 0xb5, 0x25, 0x6c, 0x27, 0x14, 0x32, 0x13, 0xd2, 0x0b, 0xa8, 0x64, 0xde, 0xf9, 0x30, 0x60,
+	0x8a, 0x0e, 0xbd, 0x50, 0xa4, 0xbc, 0xbc, 0xc1, 0xfd, 0x81, 0xe0, 0x70, 0x2c, 0xe3, 0xd7, 0x8c,
+	0x47, 0xa7, 0x22, 0xe5, 0xd8, 0x82, 0x2b, 0x61, 0xce, 0xa8, 0x12, 0xb9, 0x85, 0xfa, 0x68, 0x70,
+	0xe0, 0xd7, 0x12, 0xdf, 0x81, 0x9e, 0x64, 0x3c, 0x62, 0xb9, 0x65, 0x14, 0x85, 0x4a, 0x61, 0x1b,
+	0xf6, 0x73, 0x16, 0xb2, 0xf4, 0x9c, 0xe5, 0x56, 0xb7, 0xa8, 0x34, 0x1a, 0x0f, 0xa1, 0x47, 0x33,
+	0x31, 0xe5, 0xca, 0x32, 0xfb, 0x68, 0x70, 0x78, 0x72, 0x4c, 0x4a, 0x1c, 0xb2, 0xc4, 0x21, 0x15,
+	0x0e, 0x59, 0x0e, 0xf6, 0xab, 0x83, 0xf8, 0x11, 0xdc, 0x9c, 0xf2, 0x33, 0x11, 0xbe, 0x0f, 0x96,
+	0x3f, 0x09, 0x4b, 0xe3, 0x44, 0x59, 0x7b, 0x7d, 0x34, 0x30, 0xfd, 0xd5, 0x82, 0xfb, 0x10, 0x6e,
+	0x69, 0xf4, 0x3e, 0x93, 0x13, 0xc1, 0x25, 0xc3, 0x47, 0xb0, 0x97, 0xf2, 0x88, 0xcd, 0x2a, 0x0f,
+	0xa5, 0x70, 0x4f, 0xe1, 0xfa, 0x58, 0xc6, 0x6f, 0x52, 0x95, 0x44, 0x39, 0xfd, 0x50, 0xd8, 0x5d,
+	0x7b, 0xb0, 0x65, 0xc9, 0x68, 0x5b, 0x72, 0x8f, 0xe1, 0xee, 0x5f, 0x97, 0xd4, 0x53, 0xdd, 0xef,
+	0xa8, 0x45, 0xf3, 0x92, 0xca, 0x64, 0x89, 0xfa, 0x9f, 0x4c, 0x31, 0x98, 0xef, 0x72, 0x91, 0x55,
+	0x43, 0x8a, 0x6f, 0x7c, 0x0d, 0x0c, 0x25, 0xaa, 0x24, 0x0d, 0x25, 0x76, 0xc9, 0x10, 0x83, 0x99,
+	0x50, 0x99, 0x14, 0xb1, 0x1d, 0xf8, 0xc5, 0xb7, 0x3b, 0x82, 0x7b, 0x6b, 0xd8, 0xf4, 0xc4, 0x5e,
+	0xe9, 0x41, 0x14, 0xc2, 0xcd, 0x56, 0xcc, 0x6e, 0x60, 0xaa, 0x34, 0x60, 0x34, 0x06, 0x9a, 0x8c,
+	0xbb, 0x7a, 0xc6, 0x35, 0xa3, 0xa9, 0x31, 0x3e, 0x80, 0xfb, 0xff, 0x18, 0x57, 0x73, 0x9e, 0x7c,
+	0x33, 0xa1, 0x3b, 0x96, 0x31, 0x9e, 0xc0, 0x7e, 0xb3, 0xb3, 0x8f, 0xc9, 0x65, 0x7f, 0x03, 0xa2,
+	0x59, 0xb7, 0x9f, 0x6c, 0x75, 0xbc, 0x49, 0xe8, 0x13, 0x5c, 0x6d, 0xad, 0xce, 0x70, 0xa3, 0x6b,
+	0xf4, 0x16, 0xfb, 0xe9, 0xd6, 0x2d, 0xcd, 0xf4, 0xcf, 0x08, 0x6e, 0xac, 0x2c, 0xd6, 0x76, 0x4e,
+	0xea, 0x36, 0xfb, 0xd9, 0x4e, 0x6d, 0x0d, 0xca, 0x57, 0x04, 0x47, 0x6b, 0x57, 0x62, 0x7b, 0x7b,
+	0x0d, 0xd2, 0xf3, 0x9d, 0x5b, 0x6b, 0xac, 0x17, 0xe3, 0x9f, 0x73, 0x07, 0x5d, 0xcc, 0x1d, 0xf4,
+	0x7b, 0xee, 0xa0, 0x2f, 0x0b, 0xa7, 0x73, 0xb1, 0x70, 0x3a, 0xbf, 0x16, 0x4e, 0xe7, 0xed, 0x28,
+	0x4e, 0x55, 0x32, 0x0d, 0x48, 0x28, 0x32, 0xaf, 0x1c, 0xe3, 0xb5, 0x9e, 0xd3, 0x59, 0x5b, 0xaa,
+	0x8f, 0x13, 0x26, 0x83, 0x5e, 0xf1, 0x3e, 0x8e, 0xfe, 0x04, 0x00, 0x00, 0xff, 0xff, 0xf2, 0x77,
+	0x6e, 0x4c, 0x7a, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -415,6 +524,7 @@ type MsgClient interface {
 	SendCoin(ctx context.Context, in *MsgSendCoin, opts ...grpc.CallOption) (*MsgSendCoinResponse, error)
 	WithdrawCoin(ctx context.Context, in *MsgWithdrawCoin, opts ...grpc.CallOption) (*MsgWithdrawCoinResponse, error)
 	SendCoinHashlock(ctx context.Context, in *MsgSendCoinHashlock, opts ...grpc.CallOption) (*MsgSendCoinHashlockResponse, error)
+	WithdrawCoinHashlock(ctx context.Context, in *MsgWithdrawCoinHashlock, opts ...grpc.CallOption) (*MsgWithdrawCoinHashlockResponse, error)
 }
 
 type msgClient struct {
@@ -452,11 +562,21 @@ func (c *msgClient) SendCoinHashlock(ctx context.Context, in *MsgSendCoinHashloc
 	return out, nil
 }
 
+func (c *msgClient) WithdrawCoinHashlock(ctx context.Context, in *MsgWithdrawCoinHashlock, opts ...grpc.CallOption) (*MsgWithdrawCoinHashlockResponse, error) {
+	out := new(MsgWithdrawCoinHashlockResponse)
+	err := c.cc.Invoke(ctx, "/ttdung.statechannel.statechannel.Msg/WithdrawCoinHashlock", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	SendCoin(context.Context, *MsgSendCoin) (*MsgSendCoinResponse, error)
 	WithdrawCoin(context.Context, *MsgWithdrawCoin) (*MsgWithdrawCoinResponse, error)
 	SendCoinHashlock(context.Context, *MsgSendCoinHashlock) (*MsgSendCoinHashlockResponse, error)
+	WithdrawCoinHashlock(context.Context, *MsgWithdrawCoinHashlock) (*MsgWithdrawCoinHashlockResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -471,6 +591,9 @@ func (*UnimplementedMsgServer) WithdrawCoin(ctx context.Context, req *MsgWithdra
 }
 func (*UnimplementedMsgServer) SendCoinHashlock(ctx context.Context, req *MsgSendCoinHashlock) (*MsgSendCoinHashlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendCoinHashlock not implemented")
+}
+func (*UnimplementedMsgServer) WithdrawCoinHashlock(ctx context.Context, req *MsgWithdrawCoinHashlock) (*MsgWithdrawCoinHashlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawCoinHashlock not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -531,6 +654,24 @@ func _Msg_SendCoinHashlock_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_WithdrawCoinHashlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgWithdrawCoinHashlock)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).WithdrawCoinHashlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ttdung.statechannel.statechannel.Msg/WithdrawCoinHashlock",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).WithdrawCoinHashlock(ctx, req.(*MsgWithdrawCoinHashlock))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "ttdung.statechannel.statechannel.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -546,6 +687,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendCoinHashlock",
 			Handler:    _Msg_SendCoinHashlock_Handler,
+		},
+		{
+			MethodName: "WithdrawCoinHashlock",
+			Handler:    _Msg_WithdrawCoinHashlock_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -796,6 +941,80 @@ func (m *MsgSendCoinHashlockResponse) MarshalToSizedBuffer(dAtA []byte) (int, er
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgWithdrawCoinHashlock) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgWithdrawCoinHashlock) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgWithdrawCoinHashlock) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Hash) > 0 {
+		i -= len(m.Hash)
+		copy(dAtA[i:], m.Hash)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Hash)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.To) > 0 {
+		i -= len(m.To)
+		copy(dAtA[i:], m.To)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.To)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgWithdrawCoinHashlockResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgWithdrawCoinHashlockResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgWithdrawCoinHashlockResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -913,6 +1132,40 @@ func (m *MsgSendCoinHashlockResponse) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
+	return n
+}
+
+func (m *MsgWithdrawCoinHashlock) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.To)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Hash)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgWithdrawCoinHashlockResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	return n
 }
 
@@ -1644,6 +1897,234 @@ func (m *MsgSendCoinHashlockResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.Index = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgWithdrawCoinHashlock) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgWithdrawCoinHashlock: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgWithdrawCoinHashlock: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field To", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.To = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Hash", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Hash = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgWithdrawCoinHashlockResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgWithdrawCoinHashlockResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgWithdrawCoinHashlockResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])

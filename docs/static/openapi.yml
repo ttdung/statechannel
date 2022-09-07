@@ -48951,6 +48951,8 @@ definitions:
     properties:
       index:
         type: string
+  ttdung.statechannel.statechannel.MsgWithdrawCoinHashlockResponse:
+    type: object
   ttdung.statechannel.statechannel.MsgWithdrawCoinResponse:
     type: object
   ttdung.statechannel.statechannel.Params:
