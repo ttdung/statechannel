@@ -36,7 +36,7 @@ func (k msgServer) SendCoinHashlock(goCtx context.Context, msg *types.MsgSendCoi
 		From:   msg.From,
 		To:     msg.To,
 		Amount: msg.Amount,
-		Hash:   msg.Hash,
+		Secret: msg.Secret,
 	}
 	k.Keeper.SetHashlock(ctx, hashLock)
 

@@ -17,6 +17,24 @@ export interface MsgWithdrawCoin {
 }
 export interface MsgWithdrawCoinResponse {
 }
+export interface MsgSendCoinHashlock {
+    creator: string;
+    from: string;
+    to: string;
+    amount: Coin | undefined;
+    secret: string;
+}
+export interface MsgSendCoinHashlockResponse {
+    Index: string;
+}
+export interface MsgWithdrawCoinHashlock {
+    creator: string;
+    to: string;
+    index: string;
+    secret: string;
+}
+export interface MsgWithdrawCoinHashlockResponse {
+}
 export declare const MsgSendCoin: {
     encode(message: MsgSendCoin, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgSendCoin;
@@ -45,17 +63,49 @@ export declare const MsgWithdrawCoinResponse: {
     toJSON(_: MsgWithdrawCoinResponse): unknown;
     fromPartial(_: DeepPartial<MsgWithdrawCoinResponse>): MsgWithdrawCoinResponse;
 };
+export declare const MsgSendCoinHashlock: {
+    encode(message: MsgSendCoinHashlock, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgSendCoinHashlock;
+    fromJSON(object: any): MsgSendCoinHashlock;
+    toJSON(message: MsgSendCoinHashlock): unknown;
+    fromPartial(object: DeepPartial<MsgSendCoinHashlock>): MsgSendCoinHashlock;
+};
+export declare const MsgSendCoinHashlockResponse: {
+    encode(message: MsgSendCoinHashlockResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgSendCoinHashlockResponse;
+    fromJSON(object: any): MsgSendCoinHashlockResponse;
+    toJSON(message: MsgSendCoinHashlockResponse): unknown;
+    fromPartial(object: DeepPartial<MsgSendCoinHashlockResponse>): MsgSendCoinHashlockResponse;
+};
+export declare const MsgWithdrawCoinHashlock: {
+    encode(message: MsgWithdrawCoinHashlock, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgWithdrawCoinHashlock;
+    fromJSON(object: any): MsgWithdrawCoinHashlock;
+    toJSON(message: MsgWithdrawCoinHashlock): unknown;
+    fromPartial(object: DeepPartial<MsgWithdrawCoinHashlock>): MsgWithdrawCoinHashlock;
+};
+export declare const MsgWithdrawCoinHashlockResponse: {
+    encode(_: MsgWithdrawCoinHashlockResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgWithdrawCoinHashlockResponse;
+    fromJSON(_: any): MsgWithdrawCoinHashlockResponse;
+    toJSON(_: MsgWithdrawCoinHashlockResponse): unknown;
+    fromPartial(_: DeepPartial<MsgWithdrawCoinHashlockResponse>): MsgWithdrawCoinHashlockResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     SendCoin(request: MsgSendCoin): Promise<MsgSendCoinResponse>;
-    /** this line is used by starport scaffolding # proto/tx/rpc */
     WithdrawCoin(request: MsgWithdrawCoin): Promise<MsgWithdrawCoinResponse>;
+    SendCoinHashlock(request: MsgSendCoinHashlock): Promise<MsgSendCoinHashlockResponse>;
+    /** this line is used by starport scaffolding # proto/tx/rpc */
+    WithdrawCoinHashlock(request: MsgWithdrawCoinHashlock): Promise<MsgWithdrawCoinHashlockResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
     constructor(rpc: Rpc);
     SendCoin(request: MsgSendCoin): Promise<MsgSendCoinResponse>;
     WithdrawCoin(request: MsgWithdrawCoin): Promise<MsgWithdrawCoinResponse>;
+    SendCoinHashlock(request: MsgSendCoinHashlock): Promise<MsgSendCoinHashlockResponse>;
+    WithdrawCoinHashlock(request: MsgWithdrawCoinHashlock): Promise<MsgWithdrawCoinHashlockResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

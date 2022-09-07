@@ -23,8 +23,8 @@ func (k msgServer) WithdrawCoinHashlock(goCtx context.Context, msg *types.MsgWit
 		return nil, errors.New("not matching receiver address!")
 	}
 
-	hash := sha256.Sum256([]byte(msg.Hash))
-	if val.Hash != base64.StdEncoding.EncodeToString(hash[:]) {
+	hash := sha256.Sum256([]byte(msg.Secret))
+	if val.Secret != base64.StdEncoding.EncodeToString(hash[:]) {
 		return nil, errors.New("Wrong hash !")
 	}
 

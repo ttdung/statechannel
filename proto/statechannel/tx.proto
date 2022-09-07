@@ -41,7 +41,7 @@ message MsgSendCoinHashlock {
   string from = 2;
   string to = 3;
   cosmos.base.v1beta1.Coin amount = 4;
-  string hash = 5;
+  string secret = 5;
 }
 
 message MsgSendCoinHashlockResponse {
@@ -52,7 +52,7 @@ message MsgWithdrawCoinHashlock {
   string creator = 1;
   string to = 2;
   string index = 3;
-  string hash = 4;
+  string secret = 4;
 }
 
 message MsgWithdrawCoinHashlockResponse {

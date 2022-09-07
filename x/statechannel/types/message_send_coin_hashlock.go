@@ -9,13 +9,13 @@ const TypeMsgSendCoinHashlock = "send_coin_hashlock"
 
 var _ sdk.Msg = &MsgSendCoinHashlock{}
 
-func NewMsgSendCoinHashlock(creator string, from string, to string, amount *sdk.Coin, hash string) *MsgSendCoinHashlock {
+func NewMsgSendCoinHashlock(creator string, from string, to string, amount *sdk.Coin, secret string) *MsgSendCoinHashlock {
 	return &MsgSendCoinHashlock{
 		Creator: creator,
 		From:    from,
 		To:      to,
 		Amount:  amount,
-		Hash:    hash,
+		Secret:  secret,
 	}
 }
 

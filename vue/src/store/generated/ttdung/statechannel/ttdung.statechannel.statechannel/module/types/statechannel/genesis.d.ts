@@ -1,12 +1,14 @@
 import { Params } from "../statechannel/params";
 import { Timelock } from "../statechannel/timelock";
+import { Hashlock } from "../statechannel/hashlock";
 import { Writer, Reader } from "protobufjs/minimal";
 export declare const protobufPackage = "ttdung.statechannel.statechannel";
 /** GenesisState defines the statechannel module's genesis state. */
 export interface GenesisState {
     params: Params | undefined;
-    /** this line is used by starport scaffolding # genesis/proto/state */
     timelockList: Timelock[];
+    /** this line is used by starport scaffolding # genesis/proto/state */
+    hashlockList: Hashlock[];
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: Writer): Writer;

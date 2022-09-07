@@ -29,7 +29,7 @@ export interface MsgSendCoinHashlock {
   from: string;
   to: string;
   amount: Coin | undefined;
-  hash: string;
+  secret: string;
 }
 
 export interface MsgSendCoinHashlockResponse {
@@ -40,7 +40,7 @@ export interface MsgWithdrawCoinHashlock {
   creator: string;
   to: string;
   index: string;
-  hash: string;
+  secret: string;
 }
 
 export interface MsgWithdrawCoinHashlockResponse {}
@@ -361,7 +361,7 @@ const baseMsgSendCoinHashlock: object = {
   creator: "",
   from: "",
   to: "",
-  hash: "",
+  secret: "",
 };
 
 export const MsgSendCoinHashlock = {
@@ -381,8 +381,8 @@ export const MsgSendCoinHashlock = {
     if (message.amount !== undefined) {
       Coin.encode(message.amount, writer.uint32(34).fork()).ldelim();
     }
-    if (message.hash !== "") {
-      writer.uint32(42).string(message.hash);
+    if (message.secret !== "") {
+      writer.uint32(42).string(message.secret);
     }
     return writer;
   },
@@ -407,7 +407,7 @@ export const MsgSendCoinHashlock = {
           message.amount = Coin.decode(reader, reader.uint32());
           break;
         case 5:
-          message.hash = reader.string();
+          message.secret = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -439,10 +439,10 @@ export const MsgSendCoinHashlock = {
     } else {
       message.amount = undefined;
     }
-    if (object.hash !== undefined && object.hash !== null) {
-      message.hash = String(object.hash);
+    if (object.secret !== undefined && object.secret !== null) {
+      message.secret = String(object.secret);
     } else {
-      message.hash = "";
+      message.secret = "";
     }
     return message;
   },
@@ -454,7 +454,7 @@ export const MsgSendCoinHashlock = {
     message.to !== undefined && (obj.to = message.to);
     message.amount !== undefined &&
       (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
-    message.hash !== undefined && (obj.hash = message.hash);
+    message.secret !== undefined && (obj.secret = message.secret);
     return obj;
   },
 
@@ -480,10 +480,10 @@ export const MsgSendCoinHashlock = {
     } else {
       message.amount = undefined;
     }
-    if (object.hash !== undefined && object.hash !== null) {
-      message.hash = object.hash;
+    if (object.secret !== undefined && object.secret !== null) {
+      message.secret = object.secret;
     } else {
-      message.hash = "";
+      message.secret = "";
     }
     return message;
   },
@@ -562,7 +562,7 @@ const baseMsgWithdrawCoinHashlock: object = {
   creator: "",
   to: "",
   index: "",
-  hash: "",
+  secret: "",
 };
 
 export const MsgWithdrawCoinHashlock = {
@@ -579,8 +579,8 @@ export const MsgWithdrawCoinHashlock = {
     if (message.index !== "") {
       writer.uint32(26).string(message.index);
     }
-    if (message.hash !== "") {
-      writer.uint32(34).string(message.hash);
+    if (message.secret !== "") {
+      writer.uint32(34).string(message.secret);
     }
     return writer;
   },
@@ -604,7 +604,7 @@ export const MsgWithdrawCoinHashlock = {
           message.index = reader.string();
           break;
         case 4:
-          message.hash = reader.string();
+          message.secret = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -633,10 +633,10 @@ export const MsgWithdrawCoinHashlock = {
     } else {
       message.index = "";
     }
-    if (object.hash !== undefined && object.hash !== null) {
-      message.hash = String(object.hash);
+    if (object.secret !== undefined && object.secret !== null) {
+      message.secret = String(object.secret);
     } else {
-      message.hash = "";
+      message.secret = "";
     }
     return message;
   },
@@ -646,7 +646,7 @@ export const MsgWithdrawCoinHashlock = {
     message.creator !== undefined && (obj.creator = message.creator);
     message.to !== undefined && (obj.to = message.to);
     message.index !== undefined && (obj.index = message.index);
-    message.hash !== undefined && (obj.hash = message.hash);
+    message.secret !== undefined && (obj.secret = message.secret);
     return obj;
   },
 
@@ -671,10 +671,10 @@ export const MsgWithdrawCoinHashlock = {
     } else {
       message.index = "";
     }
-    if (object.hash !== undefined && object.hash !== null) {
-      message.hash = object.hash;
+    if (object.secret !== undefined && object.secret !== null) {
+      message.secret = object.secret;
     } else {
-      message.hash = "";
+      message.secret = "";
     }
     return message;
   },

@@ -9,12 +9,12 @@ const TypeMsgWithdrawCoinHashlock = "withdraw_coin_hashlock"
 
 var _ sdk.Msg = &MsgWithdrawCoinHashlock{}
 
-func NewMsgWithdrawCoinHashlock(creator string, to string, index string, hash string) *MsgWithdrawCoinHashlock {
+func NewMsgWithdrawCoinHashlock(creator string, to string, index string, secret string) *MsgWithdrawCoinHashlock {
 	return &MsgWithdrawCoinHashlock{
 		Creator: creator,
 		To:      to,
 		Index:   index,
-		Hash:    hash,
+		Secret:  secret,
 	}
 }
 

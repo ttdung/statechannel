@@ -1,0 +1,132 @@
+/* eslint-disable */
+import { Coin } from "../cosmos/base/v1beta1/coin";
+import { Writer, Reader } from "protobufjs/minimal";
+export const protobufPackage = "ttdung.statechannel.statechannel";
+const baseHashlock = { index: "", from: "", to: "", secret: "" };
+export const Hashlock = {
+    encode(message, writer = Writer.create()) {
+        if (message.index !== "") {
+            writer.uint32(10).string(message.index);
+        }
+        if (message.from !== "") {
+            writer.uint32(18).string(message.from);
+        }
+        if (message.to !== "") {
+            writer.uint32(26).string(message.to);
+        }
+        if (message.amount !== undefined) {
+            Coin.encode(message.amount, writer.uint32(34).fork()).ldelim();
+        }
+        if (message.secret !== "") {
+            writer.uint32(42).string(message.secret);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseHashlock };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.index = reader.string();
+                    break;
+                case 2:
+                    message.from = reader.string();
+                    break;
+                case 3:
+                    message.to = reader.string();
+                    break;
+                case 4:
+                    message.amount = Coin.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.secret = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseHashlock };
+        if (object.index !== undefined && object.index !== null) {
+            message.index = String(object.index);
+        }
+        else {
+            message.index = "";
+        }
+        if (object.from !== undefined && object.from !== null) {
+            message.from = String(object.from);
+        }
+        else {
+            message.from = "";
+        }
+        if (object.to !== undefined && object.to !== null) {
+            message.to = String(object.to);
+        }
+        else {
+            message.to = "";
+        }
+        if (object.amount !== undefined && object.amount !== null) {
+            message.amount = Coin.fromJSON(object.amount);
+        }
+        else {
+            message.amount = undefined;
+        }
+        if (object.secret !== undefined && object.secret !== null) {
+            message.secret = String(object.secret);
+        }
+        else {
+            message.secret = "";
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.index !== undefined && (obj.index = message.index);
+        message.from !== undefined && (obj.from = message.from);
+        message.to !== undefined && (obj.to = message.to);
+        message.amount !== undefined &&
+            (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
+        message.secret !== undefined && (obj.secret = message.secret);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseHashlock };
+        if (object.index !== undefined && object.index !== null) {
+            message.index = object.index;
+        }
+        else {
+            message.index = "";
+        }
+        if (object.from !== undefined && object.from !== null) {
+            message.from = object.from;
+        }
+        else {
+            message.from = "";
+        }
+        if (object.to !== undefined && object.to !== null) {
+            message.to = object.to;
+        }
+        else {
+            message.to = "";
+        }
+        if (object.amount !== undefined && object.amount !== null) {
+            message.amount = Coin.fromPartial(object.amount);
+        }
+        else {
+            message.amount = undefined;
+        }
+        if (object.secret !== undefined && object.secret !== null) {
+            message.secret = object.secret;
+        }
+        else {
+            message.secret = "";
+        }
+        return message;
+    },
+};

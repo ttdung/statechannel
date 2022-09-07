@@ -1,9 +1,10 @@
 import { txClient, queryClient, MissingWalletError } from './module';
 // @ts-ignore
 import { SpVuexError } from '@starport/vuex';
+import { Hashlock } from "./module/types/statechannel/hashlock";
 import { Params } from "./module/types/statechannel/params";
 import { Timelock } from "./module/types/statechannel/timelock";
-export { Params, Timelock };
+export { Hashlock, Params, Timelock };
 async function initTxClient(vuexGetters) {
     return await txClient(vuexGetters['common/wallet/signer'], {
         addr: vuexGetters['common/env/apiTendermint']
@@ -40,7 +41,10 @@ const getDefaultState = () => {
         Params: {},
         Timelock: {},
         TimelockAll: {},
+        Hashlock: {},
+        HashlockAll: {},
         _Structure: {
+            Hashlock: getStructure(Hashlock.fromPartial({})),
             Params: getStructure(Params.fromPartial({})),
             Timelock: getStructure(Timelock.fromPartial({})),
         },
@@ -84,6 +88,18 @@ export default {
                 params.query = null;
             }
             return state.TimelockAll[JSON.stringify(params)] ?? {};
+        },
+        getHashlock: (state) => (params = { params: {} }) => {
+            if (!params.query) {
+                params.query = null;
+            }
+            return state.Hashlock[JSON.stringify(params)] ?? {};
+        },
+        getHashlockAll: (state) => (params = { params: {} }) => {
+            if (!params.query) {
+                params.query = null;
+            }
+            return state.HashlockAll[JSON.stringify(params)] ?? {};
         },
         getTypeStructure: (state) => (type) => {
             return state._Structure[type].fields;
@@ -157,6 +173,53 @@ export default {
                 throw new SpVuexError('QueryClient:QueryTimelockAll', 'API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
+        async QueryHashlock({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params: { ...key }, query = null }) {
+            try {
+                const queryClient = await initQueryClient(rootGetters);
+                let value = (await queryClient.queryHashlock(key.index)).data;
+                commit('QUERY', { query: 'Hashlock', key: { params: { ...key }, query }, value });
+                if (subscribe)
+                    commit('SUBSCRIBE', { action: 'QueryHashlock', payload: { options: { all }, params: { ...key }, query } });
+                return getters['getHashlock']({ params: { ...key }, query }) ?? {};
+            }
+            catch (e) {
+                throw new SpVuexError('QueryClient:QueryHashlock', 'API Node Unavailable. Could not perform query: ' + e.message);
+            }
+        },
+        async QueryHashlockAll({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params: { ...key }, query = null }) {
+            try {
+                const queryClient = await initQueryClient(rootGetters);
+                let value = (await queryClient.queryHashlockAll(query)).data;
+                while (all && value.pagination && value.pagination.nextKey != null) {
+                    let next_values = (await queryClient.queryHashlockAll({ ...query, 'pagination.key': value.pagination.nextKey })).data;
+                    value = mergeResults(value, next_values);
+                }
+                commit('QUERY', { query: 'HashlockAll', key: { params: { ...key }, query }, value });
+                if (subscribe)
+                    commit('SUBSCRIBE', { action: 'QueryHashlockAll', payload: { options: { all }, params: { ...key }, query } });
+                return getters['getHashlockAll']({ params: { ...key }, query }) ?? {};
+            }
+            catch (e) {
+                throw new SpVuexError('QueryClient:QueryHashlockAll', 'API Node Unavailable. Could not perform query: ' + e.message);
+            }
+        },
+        async sendMsgWithdrawCoinHashlock({ rootGetters }, { value, fee = [], memo = '' }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgWithdrawCoinHashlock(value);
+                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
+                        gas: "200000" }, memo });
+                return result;
+            }
+            catch (e) {
+                if (e == MissingWalletError) {
+                    throw new SpVuexError('TxClient:MsgWithdrawCoinHashlock:Init', 'Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new SpVuexError('TxClient:MsgWithdrawCoinHashlock:Send', 'Could not broadcast Tx: ' + e.message);
+                }
+            }
+        },
         async sendMsgWithdrawCoin({ rootGetters }, { value, fee = [], memo = '' }) {
             try {
                 const txClient = await initTxClient(rootGetters);
@@ -191,6 +254,38 @@ export default {
                 }
             }
         },
+        async sendMsgSendCoinHashlock({ rootGetters }, { value, fee = [], memo = '' }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgSendCoinHashlock(value);
+                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
+                        gas: "200000" }, memo });
+                return result;
+            }
+            catch (e) {
+                if (e == MissingWalletError) {
+                    throw new SpVuexError('TxClient:MsgSendCoinHashlock:Init', 'Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new SpVuexError('TxClient:MsgSendCoinHashlock:Send', 'Could not broadcast Tx: ' + e.message);
+                }
+            }
+        },
+        async MsgWithdrawCoinHashlock({ rootGetters }, { value }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgWithdrawCoinHashlock(value);
+                return msg;
+            }
+            catch (e) {
+                if (e == MissingWalletError) {
+                    throw new SpVuexError('TxClient:MsgWithdrawCoinHashlock:Init', 'Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new SpVuexError('TxClient:MsgWithdrawCoinHashlock:Create', 'Could not create message: ' + e.message);
+                }
+            }
+        },
         async MsgWithdrawCoin({ rootGetters }, { value }) {
             try {
                 const txClient = await initTxClient(rootGetters);
@@ -218,6 +313,21 @@ export default {
                 }
                 else {
                     throw new SpVuexError('TxClient:MsgSendCoin:Create', 'Could not create message: ' + e.message);
+                }
+            }
+        },
+        async MsgSendCoinHashlock({ rootGetters }, { value }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgSendCoinHashlock(value);
+                return msg;
+            }
+            catch (e) {
+                if (e == MissingWalletError) {
+                    throw new SpVuexError('TxClient:MsgSendCoinHashlock:Init', 'Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new SpVuexError('TxClient:MsgSendCoinHashlock:Create', 'Could not create message: ' + e.message);
                 }
             }
         },

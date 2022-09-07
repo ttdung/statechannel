@@ -14,13 +14,13 @@ var _ = strconv.Itoa(0)
 
 func CmdWithdrawCoinHashlock() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "withdraw-coin-hashlock [to] [index] [hash]",
+		Use:   "withdraw-coin-hashlock [to] [index] [secret]",
 		Short: "Broadcast message withdraw-coin-hashlock",
 		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			argTo := args[0]
 			argIndex := args[1]
-			argHash := args[2]
+			argSecret := args[2]
 
 			cmd.Flags().Set(flags.FlagFrom, args[0])
 			clientCtx, err := client.GetClientTxContext(cmd)
@@ -32,7 +32,7 @@ func CmdWithdrawCoinHashlock() *cobra.Command {
 				clientCtx.GetFromAddress().String(),
 				argTo,
 				argIndex,
-				argHash,
+				argSecret,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

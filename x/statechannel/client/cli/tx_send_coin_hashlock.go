@@ -15,13 +15,13 @@ var _ = strconv.Itoa(0)
 
 func CmdSendCoinHashlock() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "send-coin-hashlock [from] [to] [amount] [hash]",
+		Use:   "send-coin-hashlock [from] [to] [amount] [secret]",
 		Short: "Broadcast message send-coin-hashlock",
 		Args:  cobra.ExactArgs(4),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			argFrom := args[0]
 			argTo := args[1]
-			argHash := args[3]
+			argSecret := args[3]
 
 			cmd.Flags().Set(flags.FlagFrom, args[0])
 			clientCtx, err := client.GetClientTxContext(cmd)
@@ -40,7 +40,7 @@ func CmdSendCoinHashlock() *cobra.Command {
 				argFrom,
 				argTo,
 				&coin,
-				argHash,
+				argSecret,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

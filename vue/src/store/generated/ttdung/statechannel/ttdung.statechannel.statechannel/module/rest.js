@@ -140,6 +140,35 @@ export class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryHashlockAll
+         * @summary Queries a list of Hashlock items.
+         * @request GET:/ttdung/statechannel/statechannel/hashlock
+         */
+        this.queryHashlockAll = (query, params = {}) => this.request({
+            path: `/ttdung/statechannel/statechannel/hashlock`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryHashlock
+         * @summary Queries a Hashlock by index.
+         * @request GET:/ttdung/statechannel/statechannel/hashlock/{index}
+         */
+        this.queryHashlock = (index, params = {}) => this.request({
+            path: `/ttdung/statechannel/statechannel/hashlock/${index}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryParams
          * @summary Parameters queries the parameters of the module.
          * @request GET:/ttdung/statechannel/statechannel/params
