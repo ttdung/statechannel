@@ -10,6 +10,7 @@ import (
 func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgSendCoin{}, "statechannel/SendCoin", nil)
 	cdc.RegisterConcrete(&MsgWithdrawCoin{}, "statechannel/WithdrawCoin", nil)
+	cdc.RegisterConcrete(&MsgSendCoinHashlock{}, "statechannel/SendCoinHashlock", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -19,6 +20,9 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgWithdrawCoin{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgSendCoinHashlock{},
 	)
 	// this line is used by starport scaffolding # 3
 

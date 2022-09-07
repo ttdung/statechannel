@@ -11,6 +11,7 @@ option go_package = "github.com/ttdung/statechannel/x/statechannel/types";
 service Msg {
       rpc SendCoin(MsgSendCoin) returns (MsgSendCoinResponse);
   rpc WithdrawCoin(MsgWithdrawCoin) returns (MsgWithdrawCoinResponse);
+  rpc SendCoinHashlock(MsgSendCoinHashlock) returns (MsgSendCoinHashlockResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -32,6 +33,18 @@ message MsgWithdrawCoin {
 }
 
 message MsgWithdrawCoinResponse {
+}
+
+message MsgSendCoinHashlock {
+  string creator = 1;
+  string from = 2;
+  string to = 3;
+  cosmos.base.v1beta1.Coin amount = 4;
+  string hash = 5;
+}
+
+message MsgSendCoinHashlockResponse {
+  string Index  = 1;
 }
 
 // this line is used by starport scaffolding # proto/tx/message

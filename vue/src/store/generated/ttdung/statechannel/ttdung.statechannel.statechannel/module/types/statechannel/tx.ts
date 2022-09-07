@@ -24,6 +24,18 @@ export interface MsgWithdrawCoin {
 
 export interface MsgWithdrawCoinResponse {}
 
+export interface MsgSendCoinHashlock {
+  creator: string;
+  from: string;
+  to: string;
+  amount: Coin | undefined;
+  hash: string;
+}
+
+export interface MsgSendCoinHashlockResponse {
+  Index: string;
+}
+
 const baseMsgSendCoin: object = {
   creator: "",
   sender: "",
@@ -336,11 +348,215 @@ export const MsgWithdrawCoinResponse = {
   },
 };
 
+const baseMsgSendCoinHashlock: object = {
+  creator: "",
+  from: "",
+  to: "",
+  hash: "",
+};
+
+export const MsgSendCoinHashlock = {
+  encode(
+    message: MsgSendCoinHashlock,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.from !== "") {
+      writer.uint32(18).string(message.from);
+    }
+    if (message.to !== "") {
+      writer.uint32(26).string(message.to);
+    }
+    if (message.amount !== undefined) {
+      Coin.encode(message.amount, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.hash !== "") {
+      writer.uint32(42).string(message.hash);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgSendCoinHashlock {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgSendCoinHashlock } as MsgSendCoinHashlock;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.from = reader.string();
+          break;
+        case 3:
+          message.to = reader.string();
+          break;
+        case 4:
+          message.amount = Coin.decode(reader, reader.uint32());
+          break;
+        case 5:
+          message.hash = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSendCoinHashlock {
+    const message = { ...baseMsgSendCoinHashlock } as MsgSendCoinHashlock;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.from !== undefined && object.from !== null) {
+      message.from = String(object.from);
+    } else {
+      message.from = "";
+    }
+    if (object.to !== undefined && object.to !== null) {
+      message.to = String(object.to);
+    } else {
+      message.to = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Coin.fromJSON(object.amount);
+    } else {
+      message.amount = undefined;
+    }
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = String(object.hash);
+    } else {
+      message.hash = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgSendCoinHashlock): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.from !== undefined && (obj.from = message.from);
+    message.to !== undefined && (obj.to = message.to);
+    message.amount !== undefined &&
+      (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
+    message.hash !== undefined && (obj.hash = message.hash);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgSendCoinHashlock>): MsgSendCoinHashlock {
+    const message = { ...baseMsgSendCoinHashlock } as MsgSendCoinHashlock;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.from !== undefined && object.from !== null) {
+      message.from = object.from;
+    } else {
+      message.from = "";
+    }
+    if (object.to !== undefined && object.to !== null) {
+      message.to = object.to;
+    } else {
+      message.to = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Coin.fromPartial(object.amount);
+    } else {
+      message.amount = undefined;
+    }
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    } else {
+      message.hash = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgSendCoinHashlockResponse: object = { Index: "" };
+
+export const MsgSendCoinHashlockResponse = {
+  encode(
+    message: MsgSendCoinHashlockResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.Index !== "") {
+      writer.uint32(10).string(message.Index);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgSendCoinHashlockResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgSendCoinHashlockResponse,
+    } as MsgSendCoinHashlockResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.Index = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSendCoinHashlockResponse {
+    const message = {
+      ...baseMsgSendCoinHashlockResponse,
+    } as MsgSendCoinHashlockResponse;
+    if (object.Index !== undefined && object.Index !== null) {
+      message.Index = String(object.Index);
+    } else {
+      message.Index = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgSendCoinHashlockResponse): unknown {
+    const obj: any = {};
+    message.Index !== undefined && (obj.Index = message.Index);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgSendCoinHashlockResponse>
+  ): MsgSendCoinHashlockResponse {
+    const message = {
+      ...baseMsgSendCoinHashlockResponse,
+    } as MsgSendCoinHashlockResponse;
+    if (object.Index !== undefined && object.Index !== null) {
+      message.Index = object.Index;
+    } else {
+      message.Index = "";
+    }
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   SendCoin(request: MsgSendCoin): Promise<MsgSendCoinResponse>;
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   WithdrawCoin(request: MsgWithdrawCoin): Promise<MsgWithdrawCoinResponse>;
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  SendCoinHashlock(
+    request: MsgSendCoinHashlock
+  ): Promise<MsgSendCoinHashlockResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -367,6 +583,20 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgWithdrawCoinResponse.decode(new Reader(data))
+    );
+  }
+
+  SendCoinHashlock(
+    request: MsgSendCoinHashlock
+  ): Promise<MsgSendCoinHashlockResponse> {
+    const data = MsgSendCoinHashlock.encode(request).finish();
+    const promise = this.rpc.request(
+      "ttdung.statechannel.statechannel.Msg",
+      "SendCoinHashlock",
+      data
+    );
+    return promise.then((data) =>
+      MsgSendCoinHashlockResponse.decode(new Reader(data))
     );
   }
 }

@@ -19,7 +19,6 @@ func (k Keeper) SetTimelock(ctx sdk.Context, timelock types.Timelock) {
 func (k Keeper) GetTimelock(
 	ctx sdk.Context,
 	index string,
-
 ) (val types.Timelock, found bool) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.TimelockKeyPrefix))
 

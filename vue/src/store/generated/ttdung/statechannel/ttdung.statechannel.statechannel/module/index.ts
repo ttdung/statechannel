@@ -6,11 +6,13 @@ import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "
 import { Api } from "./rest";
 import { MsgSendCoin } from "./types/statechannel/tx";
 import { MsgWithdrawCoin } from "./types/statechannel/tx";
+import { MsgSendCoinHashlock } from "./types/statechannel/tx";
 
 
 const types = [
   ["/ttdung.statechannel.statechannel.MsgSendCoin", MsgSendCoin],
   ["/ttdung.statechannel.statechannel.MsgWithdrawCoin", MsgWithdrawCoin],
+  ["/ttdung.statechannel.statechannel.MsgSendCoinHashlock", MsgSendCoinHashlock],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -45,6 +47,7 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
     msgSendCoin: (data: MsgSendCoin): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgSendCoin", value: MsgSendCoin.fromPartial( data ) }),
     msgWithdrawCoin: (data: MsgWithdrawCoin): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgWithdrawCoin", value: MsgWithdrawCoin.fromPartial( data ) }),
+    msgSendCoinHashlock: (data: MsgSendCoinHashlock): EncodeObject => ({ typeUrl: "/ttdung.statechannel.statechannel.MsgSendCoinHashlock", value: MsgSendCoinHashlock.fromPartial( data ) }),
     
   };
 };

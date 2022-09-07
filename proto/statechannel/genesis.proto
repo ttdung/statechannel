@@ -4,6 +4,7 @@ package ttdung.statechannel.statechannel;
 import "gogoproto/gogo.proto";
 import "statechannel/params.proto";
 import "statechannel/timelock.proto";
+import "statechannel/hashlock.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/ttdung/statechannel/x/statechannel/types";
@@ -12,5 +13,6 @@ option go_package = "github.com/ttdung/statechannel/x/statechannel/types";
 message GenesisState {
   Params params = 1 [(gogoproto.nullable) = false];
   repeated Timelock timelockList = 2 [(gogoproto.nullable) = false];
+  repeated Hashlock hashlockList = 3 [(gogoproto.nullable) = false];
   // this line is used by starport scaffolding # genesis/proto/state
 }

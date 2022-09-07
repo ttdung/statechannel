@@ -6,6 +6,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "statechannel/params.proto";
 import "statechannel/timelock.proto";
+import "statechannel/hashlock.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/ttdung/statechannel/x/statechannel/types";
@@ -24,6 +25,16 @@ service Query {
 	// Queries a list of Timelock items.
 	rpc TimelockAll(QueryAllTimelockRequest) returns (QueryAllTimelockResponse) {
 		option (google.api.http).get = "/ttdung/statechannel/statechannel/timelock";
+	}
+
+// Queries a Hashlock by index.
+	rpc Hashlock(QueryGetHashlockRequest) returns (QueryGetHashlockResponse) {
+		option (google.api.http).get = "/ttdung/statechannel/statechannel/hashlock/{index}";
+	}
+
+	// Queries a list of Hashlock items.
+	rpc HashlockAll(QueryAllHashlockRequest) returns (QueryAllHashlockResponse) {
+		option (google.api.http).get = "/ttdung/statechannel/statechannel/hashlock";
 	}
 
 // this line is used by starport scaffolding # 2
@@ -53,6 +64,24 @@ message QueryAllTimelockRequest {
 
 message QueryAllTimelockResponse {
 	repeated Timelock timelock = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetHashlockRequest {
+	  string index = 1;
+
+}
+
+message QueryGetHashlockResponse {
+	Hashlock hashlock = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHashlockRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHashlockResponse {
+	repeated Hashlock hashlock = 1 [(gogoproto.nullable) = false];
 	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

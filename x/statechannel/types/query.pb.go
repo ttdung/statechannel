@@ -297,6 +297,190 @@ func (m *QueryAllTimelockResponse) GetPagination() *query.PageResponse {
 	return nil
 }
 
+type QueryGetHashlockRequest struct {
+	Index string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+}
+
+func (m *QueryGetHashlockRequest) Reset()         { *m = QueryGetHashlockRequest{} }
+func (m *QueryGetHashlockRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetHashlockRequest) ProtoMessage()    {}
+func (*QueryGetHashlockRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_616e17d49b628e22, []int{6}
+}
+func (m *QueryGetHashlockRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetHashlockRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetHashlockRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetHashlockRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetHashlockRequest.Merge(m, src)
+}
+func (m *QueryGetHashlockRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetHashlockRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetHashlockRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetHashlockRequest proto.InternalMessageInfo
+
+func (m *QueryGetHashlockRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+type QueryGetHashlockResponse struct {
+	Hashlock Hashlock `protobuf:"bytes,1,opt,name=hashlock,proto3" json:"hashlock"`
+}
+
+func (m *QueryGetHashlockResponse) Reset()         { *m = QueryGetHashlockResponse{} }
+func (m *QueryGetHashlockResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetHashlockResponse) ProtoMessage()    {}
+func (*QueryGetHashlockResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_616e17d49b628e22, []int{7}
+}
+func (m *QueryGetHashlockResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetHashlockResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetHashlockResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetHashlockResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetHashlockResponse.Merge(m, src)
+}
+func (m *QueryGetHashlockResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetHashlockResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetHashlockResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetHashlockResponse proto.InternalMessageInfo
+
+func (m *QueryGetHashlockResponse) GetHashlock() Hashlock {
+	if m != nil {
+		return m.Hashlock
+	}
+	return Hashlock{}
+}
+
+type QueryAllHashlockRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllHashlockRequest) Reset()         { *m = QueryAllHashlockRequest{} }
+func (m *QueryAllHashlockRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllHashlockRequest) ProtoMessage()    {}
+func (*QueryAllHashlockRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_616e17d49b628e22, []int{8}
+}
+func (m *QueryAllHashlockRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllHashlockRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllHashlockRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllHashlockRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllHashlockRequest.Merge(m, src)
+}
+func (m *QueryAllHashlockRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllHashlockRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllHashlockRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllHashlockRequest proto.InternalMessageInfo
+
+func (m *QueryAllHashlockRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllHashlockResponse struct {
+	Hashlock   []Hashlock          `protobuf:"bytes,1,rep,name=hashlock,proto3" json:"hashlock"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllHashlockResponse) Reset()         { *m = QueryAllHashlockResponse{} }
+func (m *QueryAllHashlockResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllHashlockResponse) ProtoMessage()    {}
+func (*QueryAllHashlockResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_616e17d49b628e22, []int{9}
+}
+func (m *QueryAllHashlockResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllHashlockResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllHashlockResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllHashlockResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllHashlockResponse.Merge(m, src)
+}
+func (m *QueryAllHashlockResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllHashlockResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllHashlockResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllHashlockResponse proto.InternalMessageInfo
+
+func (m *QueryAllHashlockResponse) GetHashlock() []Hashlock {
+	if m != nil {
+		return m.Hashlock
+	}
+	return nil
+}
+
+func (m *QueryAllHashlockResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "ttdung.statechannel.statechannel.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "ttdung.statechannel.statechannel.QueryParamsResponse")
@@ -304,44 +488,53 @@ func init() {
 	proto.RegisterType((*QueryGetTimelockResponse)(nil), "ttdung.statechannel.statechannel.QueryGetTimelockResponse")
 	proto.RegisterType((*QueryAllTimelockRequest)(nil), "ttdung.statechannel.statechannel.QueryAllTimelockRequest")
 	proto.RegisterType((*QueryAllTimelockResponse)(nil), "ttdung.statechannel.statechannel.QueryAllTimelockResponse")
+	proto.RegisterType((*QueryGetHashlockRequest)(nil), "ttdung.statechannel.statechannel.QueryGetHashlockRequest")
+	proto.RegisterType((*QueryGetHashlockResponse)(nil), "ttdung.statechannel.statechannel.QueryGetHashlockResponse")
+	proto.RegisterType((*QueryAllHashlockRequest)(nil), "ttdung.statechannel.statechannel.QueryAllHashlockRequest")
+	proto.RegisterType((*QueryAllHashlockResponse)(nil), "ttdung.statechannel.statechannel.QueryAllHashlockResponse")
 }
 
 func init() { proto.RegisterFile("statechannel/query.proto", fileDescriptor_616e17d49b628e22) }
 
 var fileDescriptor_616e17d49b628e22 = []byte{
-	// 502 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x94, 0x31, 0x6f, 0x13, 0x31,
-	0x1c, 0xc5, 0xe3, 0xd2, 0x46, 0xc5, 0xdd, 0x4c, 0x24, 0x42, 0x40, 0x47, 0xe5, 0x01, 0xa2, 0x08,
-	0xd9, 0x34, 0x2d, 0x03, 0xdd, 0xda, 0xa1, 0x5d, 0x40, 0x2a, 0x11, 0x13, 0x12, 0x83, 0x73, 0xb5,
-	0x9c, 0x13, 0x77, 0xf6, 0x35, 0xf6, 0xa1, 0x56, 0x88, 0x85, 0x4f, 0x80, 0xc4, 0x87, 0x60, 0x61,
-	0x61, 0x63, 0x61, 0xef, 0x58, 0x89, 0x85, 0x09, 0xa1, 0x84, 0x0f, 0x82, 0x62, 0xfb, 0x20, 0xd7,
-	0x3b, 0xe9, 0x0e, 0xba, 0xe5, 0x62, 0xbf, 0xf7, 0xff, 0xbd, 0xfb, 0x3f, 0x1d, 0xec, 0x6a, 0xc3,
-	0x0c, 0x0f, 0x27, 0x4c, 0x4a, 0x1e, 0xd3, 0x93, 0x8c, 0x4f, 0xcf, 0x48, 0x3a, 0x55, 0x46, 0xa1,
-	0x4d, 0x63, 0x8e, 0x33, 0x29, 0xc8, 0xf2, 0x85, 0xc2, 0x43, 0xaf, 0x23, 0x94, 0x50, 0xf6, 0x32,
-	0x5d, 0xfc, 0x72, 0xba, 0xde, 0x1d, 0xa1, 0x94, 0x88, 0x39, 0x65, 0x69, 0x44, 0x99, 0x94, 0xca,
-	0x30, 0x13, 0x29, 0xa9, 0xfd, 0xe9, 0x20, 0x54, 0x3a, 0x51, 0x9a, 0x8e, 0x99, 0xe6, 0x6e, 0x1c,
-	0x7d, 0xbd, 0x35, 0xe6, 0x86, 0x6d, 0xd1, 0x94, 0x89, 0x48, 0xda, 0xcb, 0xfe, 0xee, 0xad, 0x02,
-	0x5b, 0xca, 0xa6, 0x2c, 0xc9, 0x6d, 0x6e, 0x17, 0x8e, 0x4c, 0x94, 0xf0, 0x58, 0x85, 0xaf, 0xdc,
-	0x21, 0xee, 0x40, 0xf4, 0x6c, 0xe1, 0x7c, 0x64, 0x15, 0x23, 0x7e, 0x92, 0x71, 0x6d, 0xf0, 0x4b,
-	0x78, 0xa3, 0xf0, 0xaf, 0x4e, 0x95, 0xd4, 0x1c, 0x1d, 0xc0, 0xb6, 0x73, 0xee, 0x82, 0x4d, 0xd0,
-	0xdf, 0x18, 0xf6, 0x49, 0x5d, 0x6e, 0xe2, 0x1c, 0xf6, 0x57, 0xcf, 0x7f, 0xdc, 0x6d, 0x8d, 0xbc,
-	0x1a, 0x53, 0x78, 0xd3, 0xda, 0x1f, 0x72, 0xf3, 0xdc, 0xe3, 0xf8, 0xc9, 0xa8, 0x03, 0xd7, 0x22,
-	0x79, 0xcc, 0x4f, 0xed, 0x84, 0xeb, 0x23, 0xf7, 0x80, 0x27, 0xb0, 0x5b, 0x16, 0x78, 0xa8, 0x27,
-	0x70, 0x3d, 0xcf, 0xe4, 0xb1, 0x06, 0xf5, 0x58, 0xb9, 0x8b, 0x07, 0xfb, 0xe3, 0x80, 0x99, 0x47,
-	0xdb, 0x8b, 0xe3, 0xcb, 0x68, 0x07, 0x10, 0xfe, 0x7d, 0xed, 0x7e, 0xd4, 0x3d, 0xe2, 0x76, 0x44,
-	0x16, 0x3b, 0x22, 0xae, 0x12, 0x7e, 0x47, 0xe4, 0x88, 0x09, 0xee, 0xb5, 0xa3, 0x25, 0x25, 0xfe,
-	0x0c, 0x7c, 0x9a, 0xc2, 0x8c, 0xca, 0x34, 0xd7, 0xae, 0x96, 0x06, 0x1d, 0x16, 0x90, 0x57, 0x2c,
-	0xf2, 0xfd, 0x5a, 0x64, 0x87, 0xb2, 0xcc, 0x3c, 0xfc, 0xb4, 0x0a, 0xd7, 0x2c, 0x33, 0xfa, 0x08,
-	0x60, 0xdb, 0x2d, 0x15, 0xed, 0xd4, 0x93, 0x95, 0xbb, 0xd5, 0x7b, 0xf4, 0x8f, 0x2a, 0x47, 0x83,
-	0x1f, 0xbe, 0xfb, 0xf6, 0xeb, 0xc3, 0xca, 0x00, 0xf5, 0xa9, 0x93, 0xd3, 0x42, 0xab, 0x2b, 0xda,
-	0x8f, 0xbe, 0x02, 0xb8, 0x9e, 0xbf, 0x19, 0xf4, 0xb8, 0xe1, 0xd4, 0x72, 0x25, 0x7b, 0xbb, 0xff,
-	0x23, 0xf5, 0xd4, 0xbb, 0x96, 0x7a, 0x07, 0x0d, 0xeb, 0xa9, 0xf3, 0xa5, 0xd1, 0x37, 0xb6, 0xf3,
-	0x6f, 0xd1, 0x17, 0x00, 0x37, 0x72, 0xc3, 0xbd, 0x38, 0x6e, 0x1c, 0xa1, 0x5c, 0xdd, 0xc6, 0x11,
-	0x2a, 0x1a, 0x89, 0x87, 0x36, 0xc2, 0x03, 0x34, 0x68, 0x1e, 0x61, 0xff, 0xe9, 0xf9, 0x2c, 0x00,
-	0x17, 0xb3, 0x00, 0xfc, 0x9c, 0x05, 0xe0, 0xfd, 0x3c, 0x68, 0x5d, 0xcc, 0x83, 0xd6, 0xf7, 0x79,
-	0xd0, 0x7a, 0xb1, 0x2d, 0x22, 0x33, 0xc9, 0xc6, 0x24, 0x54, 0x49, 0xa5, 0xdf, 0xe9, 0x25, 0xc7,
-	0xb3, 0x94, 0xeb, 0x71, 0xdb, 0x7e, 0xab, 0xb6, 0x7f, 0x07, 0x00, 0x00, 0xff, 0xff, 0x9e, 0x4f,
-	0x3f, 0x3e, 0x81, 0x05, 0x00, 0x00,
+	// 587 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x55, 0x3f, 0x6f, 0x13, 0x4f,
+	0x10, 0xf5, 0x25, 0xbf, 0xf8, 0x17, 0x36, 0xdd, 0x62, 0x09, 0x63, 0xd0, 0x11, 0x5d, 0x01, 0x96,
+	0x85, 0x76, 0x89, 0x13, 0x0a, 0xd2, 0x25, 0x45, 0x42, 0x01, 0x52, 0xb0, 0xa8, 0x90, 0x28, 0xd6,
+	0xce, 0xea, 0xee, 0xc4, 0x79, 0xf7, 0xe2, 0x5d, 0xa3, 0x44, 0x88, 0x86, 0x4f, 0x80, 0xc4, 0x87,
+	0x48, 0x4d, 0x47, 0x43, 0x9f, 0x32, 0x12, 0x0d, 0x15, 0x42, 0x36, 0x1f, 0x04, 0x79, 0xff, 0x60,
+	0xef, 0xf9, 0xa4, 0xbb, 0x4b, 0xa0, 0xf3, 0x7a, 0x77, 0xde, 0xbc, 0x37, 0x6f, 0x66, 0x0e, 0x34,
+	0x85, 0x24, 0x92, 0x0e, 0x22, 0xc2, 0x18, 0x4d, 0xf0, 0xc9, 0x98, 0x8e, 0xce, 0x50, 0x3a, 0xe2,
+	0x92, 0xc3, 0x4d, 0x29, 0x8f, 0xc7, 0x2c, 0x44, 0x8b, 0x0f, 0x9c, 0x43, 0xab, 0x11, 0xf2, 0x90,
+	0xab, 0xc7, 0x78, 0xf6, 0x4b, 0xc7, 0xb5, 0xee, 0x86, 0x9c, 0x87, 0x09, 0xc5, 0x24, 0x8d, 0x31,
+	0x61, 0x8c, 0x4b, 0x22, 0x63, 0xce, 0x84, 0xb9, 0xed, 0x0c, 0xb8, 0x18, 0x72, 0x81, 0xfb, 0x44,
+	0x50, 0x9d, 0x0e, 0xbf, 0xdd, 0xea, 0x53, 0x49, 0xb6, 0x70, 0x4a, 0xc2, 0x98, 0xa9, 0xc7, 0xe6,
+	0xed, 0x6d, 0x87, 0x5b, 0x4a, 0x46, 0x64, 0x68, 0x61, 0xee, 0x38, 0x57, 0x32, 0x1e, 0xd2, 0x84,
+	0x0f, 0xde, 0xe4, 0x5e, 0x46, 0x44, 0x44, 0xf3, 0xcb, 0xa0, 0x01, 0xe0, 0x8b, 0x59, 0xda, 0x23,
+	0x05, 0xd7, 0xa3, 0x27, 0x63, 0x2a, 0x64, 0xf0, 0x1a, 0xdc, 0x74, 0xfe, 0x15, 0x29, 0x67, 0x82,
+	0xc2, 0x03, 0x50, 0xd7, 0x69, 0x9b, 0xde, 0xa6, 0xd7, 0xde, 0xe8, 0xb6, 0x51, 0x51, 0x51, 0x90,
+	0x46, 0xd8, 0xff, 0xef, 0xe2, 0xc7, 0xbd, 0x5a, 0xcf, 0x44, 0x07, 0x18, 0xdc, 0x52, 0xf0, 0x87,
+	0x54, 0xbe, 0x34, 0x5c, 0x4d, 0x66, 0xd8, 0x00, 0x6b, 0x31, 0x3b, 0xa6, 0xa7, 0x2a, 0xc3, 0x8d,
+	0x9e, 0x3e, 0x04, 0x11, 0x68, 0x2e, 0x07, 0x18, 0x52, 0xcf, 0xc0, 0xba, 0x15, 0x6c, 0x68, 0x75,
+	0x8a, 0x69, 0x59, 0x14, 0x43, 0xec, 0x0f, 0x42, 0x40, 0x0c, 0xb5, 0xbd, 0x24, 0xc9, 0x52, 0x3b,
+	0x00, 0x60, 0xee, 0x89, 0x49, 0x75, 0x1f, 0x69, 0x03, 0xd1, 0xcc, 0x40, 0xa4, 0xfb, 0xc5, 0x18,
+	0x88, 0x8e, 0x48, 0x48, 0x4d, 0x6c, 0x6f, 0x21, 0x32, 0xf8, 0xec, 0x19, 0x35, 0x4e, 0x8e, 0x5c,
+	0x35, 0xab, 0xd7, 0x53, 0x03, 0x0f, 0x1d, 0xca, 0x2b, 0x8a, 0xf2, 0x83, 0x42, 0xca, 0x9a, 0x8a,
+	0xc3, 0x79, 0xc1, 0xb1, 0xa7, 0xa6, 0x81, 0x4a, 0x3b, 0x36, 0x0f, 0x98, 0x6b, 0xb4, 0x5d, 0x58,
+	0xde, 0x31, 0x8b, 0x62, 0x35, 0x5a, 0x84, 0x45, 0xc7, 0xb2, 0xd4, 0xfe, 0x85, 0x63, 0x05, 0x6a,
+	0x56, 0xaf, 0xa7, 0xe6, 0xaf, 0x39, 0xd6, 0x3d, 0xff, 0x1f, 0xac, 0x29, 0xce, 0xf0, 0xdc, 0x03,
+	0x75, 0x3d, 0x86, 0x70, 0xa7, 0x98, 0xd9, 0xf2, 0x36, 0x68, 0x3d, 0xae, 0x18, 0xa5, 0xd9, 0x04,
+	0x8f, 0x3e, 0x7c, 0xfb, 0xf5, 0x69, 0xa5, 0x03, 0xdb, 0x58, 0x87, 0x63, 0x67, 0x0f, 0xe5, 0x2c,
+	0x33, 0xf8, 0xd5, 0x03, 0xeb, 0xb6, 0x97, 0xe1, 0x93, 0x92, 0x59, 0x97, 0x97, 0x48, 0x6b, 0xf7,
+	0x2a, 0xa1, 0x86, 0xf5, 0xae, 0x62, 0xbd, 0x03, 0xbb, 0xc5, 0xac, 0xed, 0x98, 0xe1, 0x77, 0xaa,
+	0xe7, 0xdf, 0xc3, 0x2f, 0x1e, 0xd8, 0xb0, 0x80, 0x7b, 0x49, 0x52, 0x5a, 0xc2, 0xf2, 0xb2, 0x29,
+	0x2d, 0x21, 0x67, 0x87, 0x04, 0x5d, 0x25, 0xe1, 0x21, 0xec, 0x94, 0x97, 0xa0, 0x4a, 0x6f, 0x9b,
+	0xb2, 0x4a, 0xe9, 0x33, 0x23, 0x57, 0xa5, 0xf4, 0xd9, 0x49, 0xaa, 0x52, 0x7a, 0x3b, 0x2f, 0x4e,
+	0xe9, 0x2d, 0x60, 0xc5, 0xd2, 0x5f, 0x55, 0x42, 0xce, 0x32, 0xa8, 0x52, 0x7a, 0x2b, 0x61, 0xff,
+	0xf9, 0xc5, 0xc4, 0xf7, 0x2e, 0x27, 0xbe, 0xf7, 0x73, 0xe2, 0x7b, 0x1f, 0xa7, 0x7e, 0xed, 0x72,
+	0xea, 0xd7, 0xbe, 0x4f, 0xfd, 0xda, 0xab, 0xed, 0x30, 0x96, 0xd1, 0xb8, 0x8f, 0x06, 0x7c, 0x98,
+	0x8b, 0x77, 0x9a, 0x31, 0xf3, 0x2c, 0xa5, 0xa2, 0x5f, 0x57, 0x1f, 0xf6, 0xed, 0xdf, 0x01, 0x00,
+	0x00, 0xff, 0xff, 0xaa, 0xa4, 0x1f, 0x25, 0xcb, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -362,6 +555,10 @@ type QueryClient interface {
 	Timelock(ctx context.Context, in *QueryGetTimelockRequest, opts ...grpc.CallOption) (*QueryGetTimelockResponse, error)
 	// Queries a list of Timelock items.
 	TimelockAll(ctx context.Context, in *QueryAllTimelockRequest, opts ...grpc.CallOption) (*QueryAllTimelockResponse, error)
+	// Queries a Hashlock by index.
+	Hashlock(ctx context.Context, in *QueryGetHashlockRequest, opts ...grpc.CallOption) (*QueryGetHashlockResponse, error)
+	// Queries a list of Hashlock items.
+	HashlockAll(ctx context.Context, in *QueryAllHashlockRequest, opts ...grpc.CallOption) (*QueryAllHashlockResponse, error)
 }
 
 type queryClient struct {
@@ -399,6 +596,24 @@ func (c *queryClient) TimelockAll(ctx context.Context, in *QueryAllTimelockReque
 	return out, nil
 }
 
+func (c *queryClient) Hashlock(ctx context.Context, in *QueryGetHashlockRequest, opts ...grpc.CallOption) (*QueryGetHashlockResponse, error) {
+	out := new(QueryGetHashlockResponse)
+	err := c.cc.Invoke(ctx, "/ttdung.statechannel.statechannel.Query/Hashlock", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HashlockAll(ctx context.Context, in *QueryAllHashlockRequest, opts ...grpc.CallOption) (*QueryAllHashlockResponse, error) {
+	out := new(QueryAllHashlockResponse)
+	err := c.cc.Invoke(ctx, "/ttdung.statechannel.statechannel.Query/HashlockAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -407,6 +622,10 @@ type QueryServer interface {
 	Timelock(context.Context, *QueryGetTimelockRequest) (*QueryGetTimelockResponse, error)
 	// Queries a list of Timelock items.
 	TimelockAll(context.Context, *QueryAllTimelockRequest) (*QueryAllTimelockResponse, error)
+	// Queries a Hashlock by index.
+	Hashlock(context.Context, *QueryGetHashlockRequest) (*QueryGetHashlockResponse, error)
+	// Queries a list of Hashlock items.
+	HashlockAll(context.Context, *QueryAllHashlockRequest) (*QueryAllHashlockResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -421,6 +640,12 @@ func (*UnimplementedQueryServer) Timelock(ctx context.Context, req *QueryGetTime
 }
 func (*UnimplementedQueryServer) TimelockAll(ctx context.Context, req *QueryAllTimelockRequest) (*QueryAllTimelockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TimelockAll not implemented")
+}
+func (*UnimplementedQueryServer) Hashlock(ctx context.Context, req *QueryGetHashlockRequest) (*QueryGetHashlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Hashlock not implemented")
+}
+func (*UnimplementedQueryServer) HashlockAll(ctx context.Context, req *QueryAllHashlockRequest) (*QueryAllHashlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HashlockAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -481,6 +706,42 @@ func _Query_TimelockAll_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_Hashlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHashlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Hashlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ttdung.statechannel.statechannel.Query/Hashlock",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Hashlock(ctx, req.(*QueryGetHashlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HashlockAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllHashlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HashlockAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ttdung.statechannel.statechannel.Query/HashlockAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HashlockAll(ctx, req.(*QueryAllHashlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "ttdung.statechannel.statechannel.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -496,6 +757,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TimelockAll",
 			Handler:    _Query_TimelockAll_Handler,
+		},
+		{
+			MethodName: "Hashlock",
+			Handler:    _Query_Hashlock_Handler,
+		},
+		{
+			MethodName: "HashlockAll",
+			Handler:    _Query_HashlockAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -705,6 +974,153 @@ func (m *QueryAllTimelockResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetHashlockRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetHashlockRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetHashlockRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetHashlockResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetHashlockResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetHashlockResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Hashlock.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllHashlockRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllHashlockRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllHashlockRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllHashlockResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllHashlockResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllHashlockResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Hashlock) > 0 {
+		for iNdEx := len(m.Hashlock) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Hashlock[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -781,6 +1197,62 @@ func (m *QueryAllTimelockResponse) Size() (n int) {
 	_ = l
 	if len(m.Timelock) > 0 {
 		for _, e := range m.Timelock {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetHashlockRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetHashlockResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Hashlock.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllHashlockRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllHashlockResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Hashlock) > 0 {
+		for _, e := range m.Hashlock {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -1242,6 +1714,377 @@ func (m *QueryAllTimelockResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.Timelock = append(m.Timelock, Timelock{})
 			if err := m.Timelock[len(m.Timelock)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetHashlockRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetHashlockRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetHashlockRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetHashlockResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetHashlockResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetHashlockResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Hashlock", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Hashlock.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllHashlockRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllHashlockRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllHashlockRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllHashlockResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllHashlockResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllHashlockResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Hashlock", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Hashlock = append(m.Hashlock, Hashlock{})
+			if err := m.Hashlock[len(m.Hashlock)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

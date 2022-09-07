@@ -32,7 +32,20 @@ func GetTxCmd() *cobra.Command {
 
 	cmd.AddCommand(CmdSendCoin())
 	cmd.AddCommand(CmdWithdrawCoin())
+	cmd.AddCommand(CmdSendCoinHashlock())
 	// this line is used by starport scaffolding # 1
+
+	/////////////////////////////
+	//secret := "abcd1"
+	//hash1 := sha256.Sum256([]byte(secret))
+	//if hash1 == sha256.Sum256([]byte("abcd")) {
+	//	//fmt.Println("@@@@@  OKKkkk")
+	//	println("@@@@@  OKKkkk")
+	//} else {
+	//	//fmt.Println("@@@@@  Secret  not  match")
+	//	println("@@@@@  Not  match")
+	//}
+	//////////////////////////////
 
 	return cmd
 }

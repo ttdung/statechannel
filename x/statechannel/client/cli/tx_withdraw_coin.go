@@ -1,6 +1,8 @@
 package cli
 
 import (
+	"crypto/sha256"
+	"fmt"
 	"strconv"
 
 	"github.com/cosmos/cosmos-sdk/client"
@@ -18,6 +20,16 @@ func CmdWithdrawCoin() *cobra.Command {
 		Short: "Broadcast message withdraw-coin",
 		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
+			///////////////////////////
+			secret := "abcd1"
+			hash1 := sha256.Sum256([]byte(secret))
+			if hash1 == sha256.Sum256([]byte("abcd")) {
+				fmt.Println("@@@@@  OKKkkk")
+			} else {
+				fmt.Println("@@@@@  Secret  not  match input hash", hash1)
+			}
+			//////////////////////////////////
+
 			cmd.Flags().Set(flags.FlagFrom, args[1])
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {

@@ -1,10 +1,11 @@
 import { txClient, queryClient, MissingWalletError , registry} from './module'
 
+import { Hashlock } from "./module/types/statechannel/hashlock"
 import { Params } from "./module/types/statechannel/params"
 import { Timelock } from "./module/types/statechannel/timelock"
 
 
-export { Params, Timelock };
+export { Hashlock, Params, Timelock };
 
 async function initTxClient(vuexGetters) {
 	return await txClient(vuexGetters['common/wallet/signer'], {
@@ -45,8 +46,11 @@ const getDefaultState = () => {
 				Params: {},
 				Timelock: {},
 				TimelockAll: {},
+				Hashlock: {},
+				HashlockAll: {},
 				
 				_Structure: {
+						Hashlock: getStructure(Hashlock.fromPartial({})),
 						Params: getStructure(Params.fromPartial({})),
 						Timelock: getStructure(Timelock.fromPartial({})),
 						
@@ -94,6 +98,18 @@ export default {
 						(<any> params).query=null
 					}
 			return state.TimelockAll[JSON.stringify(params)] ?? {}
+		},
+				getHashlock: (state) => (params = { params: {}}) => {
+					if (!(<any> params).query) {
+						(<any> params).query=null
+					}
+			return state.Hashlock[JSON.stringify(params)] ?? {}
+		},
+				getHashlockAll: (state) => (params = { params: {}}) => {
+					if (!(<any> params).query) {
+						(<any> params).query=null
+					}
+			return state.HashlockAll[JSON.stringify(params)] ?? {}
 		},
 				
 		getTypeStructure: (state) => (type) => {
@@ -199,6 +215,54 @@ export default {
 		},
 		
 		
+		
+		
+		 		
+		
+		
+		async QueryHashlock({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
+			try {
+				const key = params ?? {};
+				const queryClient=await initQueryClient(rootGetters)
+				let value= (await queryClient.queryHashlock( key.index)).data
+				
+					
+				commit('QUERY', { query: 'Hashlock', key: { params: {...key}, query}, value })
+				if (subscribe) commit('SUBSCRIBE', { action: 'QueryHashlock', payload: { options: { all }, params: {...key},query }})
+				return getters['getHashlock']( { params: {...key}, query}) ?? {}
+			} catch (e) {
+				throw new Error('QueryClient:QueryHashlock API Node Unavailable. Could not perform query: ' + e.message)
+				
+			}
+		},
+		
+		
+		
+		
+		 		
+		
+		
+		async QueryHashlockAll({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
+			try {
+				const key = params ?? {};
+				const queryClient=await initQueryClient(rootGetters)
+				let value= (await queryClient.queryHashlockAll(query)).data
+				
+					
+				while (all && (<any> value).pagination && (<any> value).pagination.next_key!=null) {
+					let next_values=(await queryClient.queryHashlockAll({...query, 'pagination.key':(<any> value).pagination.next_key})).data
+					value = mergeResults(value, next_values);
+				}
+				commit('QUERY', { query: 'HashlockAll', key: { params: {...key}, query}, value })
+				if (subscribe) commit('SUBSCRIBE', { action: 'QueryHashlockAll', payload: { options: { all }, params: {...key},query }})
+				return getters['getHashlockAll']( { params: {...key}, query}) ?? {}
+			} catch (e) {
+				throw new Error('QueryClient:QueryHashlockAll API Node Unavailable. Could not perform query: ' + e.message)
+				
+			}
+		},
+		
+		
 		async sendMsgSendCoin({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
@@ -229,6 +293,21 @@ export default {
 				}
 			}
 		},
+		async sendMsgSendCoinHashlock({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSendCoinHashlock(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSendCoinHashlock:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgSendCoinHashlock:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
 		
 		async MsgSendCoin({ rootGetters }, { value }) {
 			try {
@@ -253,6 +332,19 @@ export default {
 					throw new Error('TxClient:MsgWithdrawCoin:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgWithdrawCoin:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgSendCoinHashlock({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSendCoinHashlock(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSendCoinHashlock:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgSendCoinHashlock:Create Could not create message: ' + e.message)
 				}
 			}
 		},

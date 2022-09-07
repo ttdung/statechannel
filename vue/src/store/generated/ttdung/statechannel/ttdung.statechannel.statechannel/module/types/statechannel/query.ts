@@ -6,6 +6,7 @@ import {
   PageRequest,
   PageResponse,
 } from "../cosmos/base/query/v1beta1/pagination";
+import { Hashlock } from "../statechannel/hashlock";
 
 export const protobufPackage = "ttdung.statechannel.statechannel";
 
@@ -32,6 +33,23 @@ export interface QueryAllTimelockRequest {
 
 export interface QueryAllTimelockResponse {
   timelock: Timelock[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetHashlockRequest {
+  index: string;
+}
+
+export interface QueryGetHashlockResponse {
+  hashlock: Hashlock | undefined;
+}
+
+export interface QueryAllHashlockRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryAllHashlockResponse {
+  hashlock: Hashlock[];
   pagination: PageResponse | undefined;
 }
 
@@ -440,6 +458,314 @@ export const QueryAllTimelockResponse = {
   },
 };
 
+const baseQueryGetHashlockRequest: object = { index: "" };
+
+export const QueryGetHashlockRequest = {
+  encode(
+    message: QueryGetHashlockRequest,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.index !== "") {
+      writer.uint32(10).string(message.index);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetHashlockRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseQueryGetHashlockRequest,
+    } as QueryGetHashlockRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.index = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetHashlockRequest {
+    const message = {
+      ...baseQueryGetHashlockRequest,
+    } as QueryGetHashlockRequest;
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index);
+    } else {
+      message.index = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetHashlockRequest): unknown {
+    const obj: any = {};
+    message.index !== undefined && (obj.index = message.index);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<QueryGetHashlockRequest>
+  ): QueryGetHashlockRequest {
+    const message = {
+      ...baseQueryGetHashlockRequest,
+    } as QueryGetHashlockRequest;
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index;
+    } else {
+      message.index = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryGetHashlockResponse: object = {};
+
+export const QueryGetHashlockResponse = {
+  encode(
+    message: QueryGetHashlockResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.hashlock !== undefined) {
+      Hashlock.encode(message.hashlock, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): QueryGetHashlockResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseQueryGetHashlockResponse,
+    } as QueryGetHashlockResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.hashlock = Hashlock.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetHashlockResponse {
+    const message = {
+      ...baseQueryGetHashlockResponse,
+    } as QueryGetHashlockResponse;
+    if (object.hashlock !== undefined && object.hashlock !== null) {
+      message.hashlock = Hashlock.fromJSON(object.hashlock);
+    } else {
+      message.hashlock = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetHashlockResponse): unknown {
+    const obj: any = {};
+    message.hashlock !== undefined &&
+      (obj.hashlock = message.hashlock
+        ? Hashlock.toJSON(message.hashlock)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<QueryGetHashlockResponse>
+  ): QueryGetHashlockResponse {
+    const message = {
+      ...baseQueryGetHashlockResponse,
+    } as QueryGetHashlockResponse;
+    if (object.hashlock !== undefined && object.hashlock !== null) {
+      message.hashlock = Hashlock.fromPartial(object.hashlock);
+    } else {
+      message.hashlock = undefined;
+    }
+    return message;
+  },
+};
+
+const baseQueryAllHashlockRequest: object = {};
+
+export const QueryAllHashlockRequest = {
+  encode(
+    message: QueryAllHashlockRequest,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllHashlockRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseQueryAllHashlockRequest,
+    } as QueryAllHashlockRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllHashlockRequest {
+    const message = {
+      ...baseQueryAllHashlockRequest,
+    } as QueryAllHashlockRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllHashlockRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageRequest.toJSON(message.pagination)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<QueryAllHashlockRequest>
+  ): QueryAllHashlockRequest {
+    const message = {
+      ...baseQueryAllHashlockRequest,
+    } as QueryAllHashlockRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
+const baseQueryAllHashlockResponse: object = {};
+
+export const QueryAllHashlockResponse = {
+  encode(
+    message: QueryAllHashlockResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    for (const v of message.hashlock) {
+      Hashlock.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(
+        message.pagination,
+        writer.uint32(18).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): QueryAllHashlockResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseQueryAllHashlockResponse,
+    } as QueryAllHashlockResponse;
+    message.hashlock = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.hashlock.push(Hashlock.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllHashlockResponse {
+    const message = {
+      ...baseQueryAllHashlockResponse,
+    } as QueryAllHashlockResponse;
+    message.hashlock = [];
+    if (object.hashlock !== undefined && object.hashlock !== null) {
+      for (const e of object.hashlock) {
+        message.hashlock.push(Hashlock.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllHashlockResponse): unknown {
+    const obj: any = {};
+    if (message.hashlock) {
+      obj.hashlock = message.hashlock.map((e) =>
+        e ? Hashlock.toJSON(e) : undefined
+      );
+    } else {
+      obj.hashlock = [];
+    }
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageResponse.toJSON(message.pagination)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<QueryAllHashlockResponse>
+  ): QueryAllHashlockResponse {
+    const message = {
+      ...baseQueryAllHashlockResponse,
+    } as QueryAllHashlockResponse;
+    message.hashlock = [];
+    if (object.hashlock !== undefined && object.hashlock !== null) {
+      for (const e of object.hashlock) {
+        message.hashlock.push(Hashlock.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -450,6 +776,12 @@ export interface Query {
   TimelockAll(
     request: QueryAllTimelockRequest
   ): Promise<QueryAllTimelockResponse>;
+  /** Queries a Hashlock by index. */
+  Hashlock(request: QueryGetHashlockRequest): Promise<QueryGetHashlockResponse>;
+  /** Queries a list of Hashlock items. */
+  HashlockAll(
+    request: QueryAllHashlockRequest
+  ): Promise<QueryAllHashlockResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -492,6 +824,34 @@ export class QueryClientImpl implements Query {
     );
     return promise.then((data) =>
       QueryAllTimelockResponse.decode(new Reader(data))
+    );
+  }
+
+  Hashlock(
+    request: QueryGetHashlockRequest
+  ): Promise<QueryGetHashlockResponse> {
+    const data = QueryGetHashlockRequest.encode(request).finish();
+    const promise = this.rpc.request(
+      "ttdung.statechannel.statechannel.Query",
+      "Hashlock",
+      data
+    );
+    return promise.then((data) =>
+      QueryGetHashlockResponse.decode(new Reader(data))
+    );
+  }
+
+  HashlockAll(
+    request: QueryAllHashlockRequest
+  ): Promise<QueryAllHashlockResponse> {
+    const data = QueryAllHashlockRequest.encode(request).finish();
+    const promise = this.rpc.request(
+      "ttdung.statechannel.statechannel.Query",
+      "HashlockAll",
+      data
+    );
+    return promise.then((data) =>
+      QueryAllHashlockResponse.decode(new Reader(data))
     );
   }
 }

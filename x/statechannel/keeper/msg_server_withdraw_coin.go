@@ -3,8 +3,6 @@ package keeper
 import (
 	"context"
 	"errors"
-	"fmt"
-
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ttdung/statechannel/x/statechannel/types"
 )
@@ -18,7 +16,6 @@ func (k msgServer) WithdrawCoin(goCtx context.Context, msg *types.MsgWithdrawCoi
 	}
 
 	if val.To != msg.Receiver {
-		fmt.Println("@@@@ not matching receiver address! expect:", val.To)
 		return nil, errors.New("not matching receiver address!")
 	}
 

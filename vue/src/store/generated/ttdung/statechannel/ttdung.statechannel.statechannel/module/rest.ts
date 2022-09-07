@@ -20,6 +20,25 @@ export interface RpcStatus {
   details?: ProtobufAny[];
 }
 
+export interface StatechannelHashlock {
+  index?: string;
+  from?: string;
+  to?: string;
+
+  /**
+   * Coin defines a token with a denomination and an amount.
+   *
+   * NOTE: The amount field is an Int which implements the custom method
+   * signatures required by gogoproto.
+   */
+  amount?: V1Beta1Coin;
+  hash?: string;
+}
+
+export interface StatechannelMsgSendCoinHashlockResponse {
+  Index?: string;
+}
+
 export interface StatechannelMsgSendCoinResponse {
   index?: string;
 }
@@ -30,6 +49,21 @@ export type StatechannelMsgWithdrawCoinResponse = object;
  * Params defines the parameters for the module.
  */
 export type StatechannelParams = object;
+
+export interface StatechannelQueryAllHashlockResponse {
+  hashlock?: StatechannelHashlock[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
 
 export interface StatechannelQueryAllTimelockResponse {
   timelock?: StatechannelTimelock[];
@@ -44,6 +78,10 @@ export interface StatechannelQueryAllTimelockResponse {
    *  }
    */
   pagination?: V1Beta1PageResponse;
+}
+
+export interface StatechannelQueryGetHashlockResponse {
+  hashlock?: StatechannelHashlock;
 }
 
 export interface StatechannelQueryGetTimelockResponse {
@@ -345,6 +383,48 @@ export class HttpClient<SecurityDataType = unknown> {
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryHashlockAll
+   * @summary Queries a list of Hashlock items.
+   * @request GET:/ttdung/statechannel/statechannel/hashlock
+   */
+  queryHashlockAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<StatechannelQueryAllHashlockResponse, RpcStatus>({
+      path: `/ttdung/statechannel/statechannel/hashlock`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryHashlock
+   * @summary Queries a Hashlock by index.
+   * @request GET:/ttdung/statechannel/statechannel/hashlock/{index}
+   */
+  queryHashlock = (index: string, params: RequestParams = {}) =>
+    this.request<StatechannelQueryGetHashlockResponse, RpcStatus>({
+      path: `/ttdung/statechannel/statechannel/hashlock/${index}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
   /**
    * No description
    *
